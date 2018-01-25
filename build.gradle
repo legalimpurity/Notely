@@ -25,3 +25,44 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+
+// Define versions in a single place
+ext {
+
+    // Sdk and tools
+    minSdkVersion = 19
+    targetSdkVersion = 27
+    compileSdkVersion = 27
+
+    // Dagger Version
+    dagger2Version = '2.11'
+
+    // Support Libraries Version
+    supportLib = '27.0.2'
+    constraintLayoutLib = '1.0.2'
+
+    // Android Lifecycle Components
+    lifecycle = '1.0.0'
+
+    // Reactive Android
+    rxJavaVersion = '2.1.0'
+    rxAndroidVersion = '2.0.1'
+    rxJavaAdapterVersion = "1.0.0"
+
+    // Gson Ver
+    gson = '2.8.0'
+
+    // retrofit
+    retrofit = '2.3.0'
+    rxJavaAdapter = "1.0.0"
+
+    //OkHttp
+    okhttp = "3.4.1"
+
+    databinding = '2.3.1'
+
+    timberVersion = '4.6.0'
+
+    roomDatabase = '1.0.0'
+}
