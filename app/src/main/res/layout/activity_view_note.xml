@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.notesui.NotesActivity">
+    tools:context=".ui.viewnoteui.ViewNoteActivity">
 
     <data>
 
@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="com.legalimpurity.notely.ui.notesui.NotesActivityModel"/>
+            type="com.legalimpurity.notely.ui.viewnoteui.ViewNoteViewModel"/>
 
     </data>
 
