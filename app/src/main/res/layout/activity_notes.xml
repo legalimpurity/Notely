@@ -18,6 +18,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/notes_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_note"
+            app:adapter="@{viewModel.notesObservableArrayList}"/>
     </android.support.constraint.ConstraintLayout>
 </layout>

@@ -9,4 +9,5 @@ import io.reactivex.Observable
 interface DatabaseHelper
 {
     fun addANewNote(myNote: MyNote): Observable<Boolean>
+    fun getLocalNotes(): Observable<List<MyNote>>
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="spacing_normal">8dp</dimen>
+    <dimen name="spacing_micro">4dp</dimen>
+    <dimen name="spacing_large">32dp</dimen>
+    <dimen name="spacing_xlarge">48dp</dimen>
+    <dimen name="spacing_huge">64dp</dimen>
+    <dimen name="padding_margin_normal">16dp</dimen>
+    <dimen name="padding_margin_large">24dp</dimen>
+    <dimen name="dialog_corners">2dp</dimen>
+
+    <dimen name="normal_item_height">100dp</dimen>
+
+    <!-- MyNote Item shared with MyNote View Activity -->
+    <dimen name="mynote_item_height">@dimen/normal_item_height</dimen>
+    <dimen name="mynote_list_margin">0dp</dimen>
+    <dimen name="mynote_title_margin">@dimen/spacing_normal</dimen>
+    <dimen name="mynote_icons_padding">@dimen/spacing_normal</dimen>
+
+</resources>

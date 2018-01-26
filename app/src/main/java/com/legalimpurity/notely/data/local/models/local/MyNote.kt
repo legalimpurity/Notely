@@ -19,14 +19,14 @@ class MyNote() : Parcelable {
     var noteTitle: String = ""
     var noteGist: String = ""
     var fav = false
-    var starred = false
+    var hearted = false
 
     constructor(parcel: Parcel) : this() {
         id = parcel.readInt()
         noteTitle = parcel.readString()
         noteGist = parcel.readString()
         fav = parcel.readByte() != 0.toByte()
-        starred = parcel.readByte() != 0.toByte()
+        hearted = parcel.readByte() != 0.toByte()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -34,7 +34,7 @@ class MyNote() : Parcelable {
         parcel.writeString(noteTitle)
         parcel.writeString(noteGist)
         parcel.writeByte(if (fav) 1 else 0)
-        parcel.writeByte(if (starred) 1 else 0)
+        parcel.writeByte(if (hearted) 1 else 0)
     }
 
     override fun describeContents(): Int {

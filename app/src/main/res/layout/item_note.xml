@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="myNote"
+            type="com.legalimpurity.notely.data.local.models.local.MyNote" />
+    </data>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mynote_item_height"
+        android:layout_marginStart="@dimen/mynote_list_margin"
+        android:layout_marginLeft="@dimen/mynote_list_margin"
+        android:layout_marginEnd="@dimen/mynote_list_margin"
+        android:layout_marginRight="@dimen/mynote_list_margin"
+        android:layout_marginTop="@dimen/mynote_list_margin"
+        android:layout_marginBottom="@dimen/mynote_list_margin"
+        android:transitionName="@string/transition_myNote_background"
+        android:background="@color/white">
+        <!--android:onClick="@{(v) -> viewModel.onItemClick(v)}"-->
+
+
+        <ImageButton
+            android:id="@+id/heart_but"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_favorite_black_24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="@dimen/mynote_icons_padding"
+            style="@style/Button"
+            tools:tint="@color/colorHearted"
+            android:tint="@{myNote.hearted ? @color/colorHearted : @color/colorNotHearted}"/>
+
+        <ImageButton
+            android:id="@+id/fav_but"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_star_black_24dp"
+            app:layout_constraintEnd_toStartOf="@+id/heart_but"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="@dimen/mynote_icons_padding"
+            style="@style/Button"
+            tools:tint="@color/colorFaved"
+            android:tint="@{myNote.fav ? @color/colorFaved : @color/colorNotFaved}"/>
+
+        <TextView
+            android:id="@+id/title_text_view"
+            android:text="@{myNote.noteTitle}"
+            android:maxLines="2"
+            style="@style/TextStyle.Heading"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="@dimen/mynote_title_margin"
+
+            app:layout_constraintEnd_toStartOf="@+id/fav_but"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="And then there were none"/>
+
+        <TextView
+            android:id="@+id/status_text_view"
+            style="@style/TextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="@dimen/mynote_title_margin"
+
+            android:maxLines="2"
+
+            android:text="@{myNote.noteGist}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fav_but"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_text_view"
+            tools:text="Ten little Soldier Boys went out to dine" />
+    </android.support.constraint.ConstraintLayout>
+</layout>
