@@ -17,6 +17,8 @@ class NotesActivityModel(dataManager: DataManager, schedulerProvider: SchedulerP
         fetchNotes()
     }
 
+    var drawerOpen = false
+
     private val notesObservableArrayList = ObservableArrayList<MyNote>()
     private val notesLiveData: MutableLiveData<List<MyNote>> = MutableLiveData()
 

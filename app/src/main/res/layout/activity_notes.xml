@@ -14,15 +14,38 @@
 
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/notes_recycler_view"
+        <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/item_note"
-            app:adapter="@{viewModel.notesObservableArrayList}"/>
-    </android.support.constraint.ConstraintLayout>
+            android:layout_height="match_parent"
+            tools:context="com.legalimpurity.notely.ui.notesui.NotesActivity">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/notes_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_note"
+                app:adapter="@{viewModel.notesObservableArrayList}"/>
+
+        </android.support.design.widget.CoordinatorLayout>
+
+
+        <ListView
+            android:id="@+id/right_drawer"
+            android:layout_width="@dimen/drawer_width"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:choiceMode="singleChoice"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"/>
+
+    </android.support.v4.widget.DrawerLayout>
+
 </layout>

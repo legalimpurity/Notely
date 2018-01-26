@@ -13,4 +13,11 @@
     <!-- Transition Names -->
     <string name="transition_myNote_background" translatable="false">transition_myNote_background</string>
 
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="navigation_drawer_hearted">Hearted</string>
+    <string name="navigation_drawer_favourite">Favourite</string>
+
 </resources>

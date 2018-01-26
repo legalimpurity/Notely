@@ -11,7 +11,7 @@ import com.legalimpurity.notely.ui.baseui.BaseRecyclerViewHolder
 /**
  * Created by rkhanna on 26/1/18.
  */
-class NotesAdapter(): RecyclerView.Adapter<BaseRecyclerViewHolder>()
+class NotesAdapter: RecyclerView.Adapter<BaseRecyclerViewHolder>()
 {
     private var noteList: MutableList<MyNote> = ArrayList()
     private var notesAdapterListener: NotesAdapterListener? = null
