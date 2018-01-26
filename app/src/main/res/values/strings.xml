@@ -5,5 +5,9 @@
     <string name="add_note_title">Note Title</string>
     <string name="add_note_gist">Note Gist</string>
 
+    <!-- Menu Strings -->
+    <string name="action_undo">Undo</string>
+    <string name="action_save">Save</string>
+
 
 </resources>

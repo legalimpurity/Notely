@@ -1,5 +1,7 @@
 package com.legalimpurity.notely.data.local.db
 
+import com.legalimpurity.notely.data.local.models.local.MyNote
+import io.reactivex.Observable
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -9,4 +11,8 @@ import javax.inject.Singleton
 @Singleton
 class DatabaseHelperImplementation @Inject constructor(private val mAppDatabase: AppDatabase) : DatabaseHelper {
 
+    override fun addANewNote(myNote: MyNote) = Observable.fromCallable {
+        mAppDatabase.notesDao().insert(myNote)
+        true
+    }
 }

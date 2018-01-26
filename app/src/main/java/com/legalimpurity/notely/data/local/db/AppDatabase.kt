@@ -13,5 +13,5 @@ import com.legalimpurity.notely.util.TimestampConverter
 @Database(entities = [MyNote::class], version = 1)
 @TypeConverters(TimestampConverter::class)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun notesMixDao(): NotesDao
+    abstract fun notesDao(): NotesDao
 }

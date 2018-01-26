@@ -1,6 +1,10 @@
 package com.legalimpurity.notely.ui.addviewnoteactivity
 
 import android.os.Bundle
+import android.support.v4.app.NavUtils
+import android.text.TextUtils
+import android.view.Menu
+import android.view.MenuItem
 import com.legalimpurity.notely.BR
 import com.legalimpurity.notely.R
 import com.legalimpurity.notely.databinding.ActivityAddViewNoteBinding
@@ -23,6 +27,27 @@ class AddViewNoteActivity : BaseActivity<ActivityAddViewNoteBinding, AddViewNote
         mActivityAddViewNoteBinding = getViewDataBinding()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.add_edit_note, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_save -> {
+                checkNoteTitle()
+                return true
+            }
+            R.id.action_undo -> {
+                // TODO add dialog confirming and exit activity
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+
     // Functions to be implemented by every Activity
     override fun getViewModel() = mAddViewNoteActivityModel
 
@@ -34,4 +59,12 @@ class AddViewNoteActivity : BaseActivity<ActivityAddViewNoteBinding, AddViewNote
     override fun apiError(throwable: Throwable) {
     }
 
+    override fun checkNoteTitle() {
+        if(!TextUtils.isEmpty(mAddViewNoteActivityModel.noteTitle.get()))
+            mAddViewNoteActivityModel.validationDone()
+    }
+
+    override fun noteAddedOrUpdated() {
+        NavUtils.navigateUpFromSameTask(this)
+    }
 }

@@ -7,5 +7,6 @@ import com.legalimpurity.notely.ui.baseui.BaseNavigator
  */
 interface AddViewNoteNavigator : BaseNavigator
 {
-
+  fun checkNoteTitle()
+  fun noteAddedOrUpdated()
 }

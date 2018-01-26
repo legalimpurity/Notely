@@ -1,19 +1,15 @@
 package com.legalimpurity.notely.data.local.models.local
 
-import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
-import android.arch.persistence.room.TypeConverters
 import android.os.Parcel
 import android.os.Parcelable
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
 import java.util.*
 
 /**
  * Created by rkhanna on 26/1/18.
  */
-@Entity(tableName = "AttTimeMix")
+@Entity(tableName = "MyNotes")
 class MyNote() : Parcelable {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
