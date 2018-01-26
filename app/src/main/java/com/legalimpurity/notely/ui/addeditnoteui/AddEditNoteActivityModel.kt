@@ -1,4 +1,4 @@
-package com.legalimpurity.notely.ui.addeditnoteactivity
+package com.legalimpurity.notely.ui.addeditnoteui
 
 import android.databinding.ObservableField
 import com.legalimpurity.notely.data.DataManager

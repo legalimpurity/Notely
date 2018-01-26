@@ -1,4 +1,4 @@
-package com.legalimpurity.notely.ui.notesactivity
+package com.legalimpurity.notely.ui.notesui
 
 import android.os.Bundle
 import com.legalimpurity.notely.BR

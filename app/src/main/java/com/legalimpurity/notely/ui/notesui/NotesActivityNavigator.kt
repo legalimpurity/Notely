@@ -1,4 +1,4 @@
-package com.legalimpurity.notely.ui.notesactivity
+package com.legalimpurity.notely.ui.notesui
 
 import com.legalimpurity.notely.ui.baseui.BaseNavigator
 

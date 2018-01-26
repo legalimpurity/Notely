@@ -1,9 +1,9 @@
 package com.legalimpurity.notely.di
 
-import com.legalimpurity.notely.ui.addeditnoteactivity.AddEditNoteActivity
-import com.legalimpurity.notely.ui.addeditnoteactivity.AddEditNoteActivityModule
-import com.legalimpurity.notely.ui.notesactivity.NotesActivity
-import com.legalimpurity.notely.ui.notesactivity.NotesActivityModule
+import com.legalimpurity.notely.ui.addeditnoteui.AddEditNoteActivity
+import com.legalimpurity.notely.ui.addeditnoteui.AddEditNoteActivityModule
+import com.legalimpurity.notely.ui.notesui.NotesActivity
+import com.legalimpurity.notely.ui.notesui.NotesActivityModule
 import com.legalimpurity.notely.ui.splashui.SplashActivity
 import com.legalimpurity.notely.ui.splashui.SplashActivityModule
 import dagger.Module
