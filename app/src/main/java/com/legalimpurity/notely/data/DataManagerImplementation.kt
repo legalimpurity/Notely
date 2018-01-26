@@ -14,4 +14,5 @@ class DataManagerImplementation @Inject constructor(val preferencesHelper: Prefe
     override fun getLocalNotes() = databaseHelper.getLocalNotes()
 
     override fun addANewNote(myNote: MyNote) = databaseHelper.addANewNote(myNote)
+    override fun updateNote(myNote: MyNote) = databaseHelper.updateNote(myNote)
 }

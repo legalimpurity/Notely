@@ -26,8 +26,8 @@ class NotesActivityModel(dataManager: DataManager, schedulerProvider: SchedulerP
                 .getLocalNotes()
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
-                .subscribe({ courseResponse ->
-                    notesLiveData.value = courseResponse
+                .subscribe({ notesResponse ->
+                    notesLiveData.value = notesResponse
                     setIsLoading(false)
                 }, { throwable ->
                     setIsLoading(false)
@@ -41,6 +41,21 @@ class NotesActivityModel(dataManager: DataManager, schedulerProvider: SchedulerP
     fun addCoursesToList(courses: List<MyNote>) {
         notesObservableArrayList.clear()
         notesObservableArrayList.addAll(courses)
+    }
+
+    fun updateMyNote(myNote: MyNote)
+    {
+        getCompositeDisposable()?.add(getDataManager()
+                .updateNote(myNote)
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe({ insertSuccessfull ->
+                    getNavigator()?.refreshAdapter()
+//                    if(insertSuccessfull)
+                }, { throwable ->
+//                    setIsLoading(false)
+                    getNavigator()?.apiError(throwable)
+                }))
     }
 
 }

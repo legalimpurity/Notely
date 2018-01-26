@@ -6,6 +6,9 @@
         <variable
             name="myNote"
             type="com.legalimpurity.notely.data.local.models.local.MyNote" />
+        <variable
+            name="listener"
+            type="com.legalimpurity.notely.ui.notesui.notesadapter.NotesAdapterListener"/>
     </data>
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,8 +20,8 @@
         android:layout_marginTop="@dimen/mynote_list_margin"
         android:layout_marginBottom="@dimen/mynote_list_margin"
         android:transitionName="@string/transition_myNote_background"
-        android:background="@color/white">
-        <!--android:onClick="@{(v) -> viewModel.onItemClick(v)}"-->
+        android:background="@color/white"
+        android:onClick="@{(v) -> listener.onClick(myNote,v)}">
 
 
         <ImageButton
@@ -31,7 +34,8 @@
             android:padding="@dimen/mynote_icons_padding"
             style="@style/Button"
             tools:tint="@color/colorHearted"
-            android:tint="@{myNote.hearted ? @color/colorHearted : @color/colorNotHearted}"/>
+            android:tint="@{myNote.hearted ? @color/colorHearted : @color/colorNotHearted}"
+            android:onClick="@{(v) -> listener.onHearted(myNote,v)}"/>
 
         <ImageButton
             android:id="@+id/fav_but"
@@ -43,7 +47,8 @@
             android:padding="@dimen/mynote_icons_padding"
             style="@style/Button"
             tools:tint="@color/colorFaved"
-            android:tint="@{myNote.fav ? @color/colorFaved : @color/colorNotFaved}"/>
+            android:tint="@{myNote.fav ? @color/colorFaved : @color/colorNotFaved}"
+            android:onClick="@{(v) -> listener.onFavd(myNote,v)}"/>
 
         <TextView
             android:id="@+id/title_text_view"

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.legalimpurity.notely.BR
 import com.legalimpurity.notely.R
 import com.legalimpurity.notely.data.local.models.local.MyNote
@@ -12,6 +13,7 @@ import com.legalimpurity.notely.databinding.ActivityNotesBinding
 import com.legalimpurity.notely.ui.addeditnoteui.openAddEditNoteActivity
 import com.legalimpurity.notely.ui.baseui.BaseActivity
 import com.legalimpurity.notely.ui.notesui.notesadapter.NotesAdapter
+import com.legalimpurity.notely.ui.notesui.notesadapter.NotesAdapterListener
 import javax.inject.Inject
 
 /**
@@ -68,6 +70,22 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
         mActivityNotesBinding?.notesRecyclerView?.layoutManager = mLayoutManager
         mActivityNotesBinding?.notesRecyclerView?.itemAnimator = mItemAnimator
         mActivityNotesBinding?.notesRecyclerView?.adapter = mNotesAdapter
+        mNotesAdapter.setListener(object : NotesAdapterListener{
+            override fun onClick(myNote: MyNote, view: View) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onFavd(myNote: MyNote, view: View) {
+                myNote.fav = !myNote.fav
+                mNotesActivityModel.updateMyNote(myNote)
+            }
+
+            override fun onHearted(myNote: MyNote, view: View) {
+                myNote.hearted = !myNote.hearted
+                mNotesActivityModel.updateMyNote(myNote)
+            }
+
+        })
     }
 
     // Functions to be implemented by every Activity
@@ -79,6 +97,10 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
 
     // Navigator Functions
     override fun apiError(throwable: Throwable) {
+    }
+
+    override fun refreshAdapter() {
+        mNotesAdapter.notifyDataSetChanged()
     }
 
 }

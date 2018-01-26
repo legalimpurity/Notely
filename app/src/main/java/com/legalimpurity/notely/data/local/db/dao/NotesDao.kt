@@ -1,8 +1,6 @@
 package com.legalimpurity.notely.data.local.db.dao
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.Query
+import android.arch.persistence.room.*
 import com.legalimpurity.notely.data.local.models.local.MyNote
 
 /**
@@ -17,7 +15,9 @@ interface NotesDao {
     @Query("SELECT * FROM MyNotes WHERE id = :id")
     fun loadCourseDataForCourseWithCCD(id: Int?): MyNote
 
-    @Insert()
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(courseData: MyNote)
 
+    @Update()
+    fun update(courseData: MyNote)
 }

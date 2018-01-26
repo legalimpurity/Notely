@@ -16,6 +16,11 @@ class DatabaseHelperImplementation @Inject constructor(private val mAppDatabase:
         true
     }
 
+    override fun updateNote(myNote: MyNote) = Observable.fromCallable {
+        mAppDatabase.notesDao().update(myNote)
+        true
+    }
+
     override fun getLocalNotes() = Observable.fromCallable<List<MyNote>> { mAppDatabase.notesDao().loadAll() }
 
 }

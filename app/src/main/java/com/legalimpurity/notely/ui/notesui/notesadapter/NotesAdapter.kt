@@ -13,8 +13,8 @@ import com.legalimpurity.notely.ui.baseui.BaseRecyclerViewHolder
  */
 class NotesAdapter(): RecyclerView.Adapter<BaseRecyclerViewHolder>()
 {
-    var noteList: MutableList<MyNote> = ArrayList()
-
+    private var noteList: MutableList<MyNote> = ArrayList()
+    private var notesAdapterListener: NotesAdapterListener? = null
     override fun onBindViewHolder(holder: BaseRecyclerViewHolder?, position: Int) {
         holder?.onBind(position)
     }
@@ -35,12 +35,17 @@ class NotesAdapter(): RecyclerView.Adapter<BaseRecyclerViewHolder>()
         }
     }
 
+    fun setListener(notesAdapterListener: NotesAdapterListener)
+    {
+        this.notesAdapterListener = notesAdapterListener
+    }
     // ViewHolder Class
     inner class CourseViewHolder(private val mItemNoteBinding: ItemNoteBinding): BaseRecyclerViewHolder(mItemNoteBinding.root)
     {
 
         override fun onBind(pos: Int) {
             mItemNoteBinding.myNote = noteList[pos]
+            mItemNoteBinding.listener = notesAdapterListener
             mItemNoteBinding.executePendingBindings()
         }
     }
