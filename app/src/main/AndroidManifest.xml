@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".NotelyApp">
-        <activity android:name=".ui.notesactivity.NotesActivity">
+        <activity android:name=".ui.addviewnoteactivity.AddViewNoteActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

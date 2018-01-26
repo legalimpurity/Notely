@@ -11,7 +11,7 @@ import java.util.*
  */
 class TimestampConverter {
 
-    var df: DateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+    var df: DateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss") as DateFormat
 
     @TypeConverter
     fun fromTimestamp(value: String?): Date {
