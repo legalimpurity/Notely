@@ -1,4 +1,4 @@
-package com.legalimpurity.notely.ui.addviewnoteactivity
+package com.legalimpurity.notely.ui.addeditnoteactivity
 
 import android.databinding.ObservableField
 import com.legalimpurity.notely.data.DataManager
@@ -10,7 +10,7 @@ import io.reactivex.disposables.CompositeDisposable
 /**
  * Created by rkhanna on 26/1/18.
  */
-class AddViewNoteActivityModel(dataManager: DataManager, schedulerProvider: SchedulerProvider, compositeDisposable: CompositeDisposable) : BaseViewModel<AddViewNoteNavigator>(dataManager,schedulerProvider, compositeDisposable) {
+class AddEditNoteActivityModel(dataManager: DataManager, schedulerProvider: SchedulerProvider, compositeDisposable: CompositeDisposable) : BaseViewModel<AddEditNoteNavigator>(dataManager,schedulerProvider, compositeDisposable) {
 
     val noteTitle = ObservableField<String>()
     val noteGist = ObservableField<String>()

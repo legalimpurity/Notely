@@ -1,11 +1,11 @@
-package com.legalimpurity.notely.ui.addviewnoteactivity
+package com.legalimpurity.notely.ui.addeditnoteactivity
 
 import com.legalimpurity.notely.ui.baseui.BaseNavigator
 
 /**
  * Created by rkhanna on 26/1/18.
  */
-interface AddViewNoteNavigator : BaseNavigator
+interface AddEditNoteNavigator : BaseNavigator
 {
   fun checkNoteTitle()
   fun noteAddedOrUpdated()

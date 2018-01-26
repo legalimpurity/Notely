@@ -1,4 +1,4 @@
-package com.legalimpurity.notely.ui.addviewnoteactivity
+package com.legalimpurity.notely.ui.addeditnoteactivity
 
 import android.os.Bundle
 import android.support.v4.app.NavUtils
@@ -14,16 +14,16 @@ import javax.inject.Inject
 /**
  * Created by rkhanna on 26/1/18.
  */
-class AddViewNoteActivity : BaseActivity<ActivityAddViewNoteBinding, AddViewNoteActivityModel>(), AddViewNoteNavigator {
+class AddEditNoteActivity : BaseActivity<ActivityAddViewNoteBinding, AddEditNoteActivityModel>(), AddEditNoteNavigator {
 
     @Inject
-    lateinit var mAddViewNoteActivityModel: AddViewNoteActivityModel
+    lateinit var mAddEditNoteActivityModel: AddEditNoteActivityModel
 
     private var mActivityAddViewNoteBinding: ActivityAddViewNoteBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mAddViewNoteActivityModel.setNavigator(this)
+        mAddEditNoteActivityModel.setNavigator(this)
         mActivityAddViewNoteBinding = getViewDataBinding()
     }
 
@@ -49,7 +49,7 @@ class AddViewNoteActivity : BaseActivity<ActivityAddViewNoteBinding, AddViewNote
 
 
     // Functions to be implemented by every Activity
-    override fun getViewModel() = mAddViewNoteActivityModel
+    override fun getViewModel() = mAddEditNoteActivityModel
 
     override fun getBindingVariable() = BR.viewModel
 
@@ -60,8 +60,8 @@ class AddViewNoteActivity : BaseActivity<ActivityAddViewNoteBinding, AddViewNote
     }
 
     override fun checkNoteTitle() {
-        if(!TextUtils.isEmpty(mAddViewNoteActivityModel.noteTitle.get()))
-            mAddViewNoteActivityModel.validationDone()
+        if(!TextUtils.isEmpty(mAddEditNoteActivityModel.noteTitle.get()))
+            mAddEditNoteActivityModel.validationDone()
     }
 
     override fun noteAddedOrUpdated() {

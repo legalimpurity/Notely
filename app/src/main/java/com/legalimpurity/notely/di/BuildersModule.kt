@@ -1,7 +1,7 @@
 package com.legalimpurity.notely.di
 
-import com.legalimpurity.notely.ui.addviewnoteactivity.AddViewNoteActivity
-import com.legalimpurity.notely.ui.addviewnoteactivity.AddViewNoteActivityModule
+import com.legalimpurity.notely.ui.addeditnoteactivity.AddEditNoteActivity
+import com.legalimpurity.notely.ui.addeditnoteactivity.AddEditNoteActivityModule
 import com.legalimpurity.notely.ui.notesactivity.NotesActivity
 import com.legalimpurity.notely.ui.notesactivity.NotesActivityModule
 import com.legalimpurity.notely.ui.splashui.SplashActivity
@@ -20,6 +20,6 @@ abstract class BuildersModule {
     @ContributesAndroidInjector(modules = [NotesActivityModule::class])
     abstract fun bindNotesActivity(): NotesActivity
 
-    @ContributesAndroidInjector(modules = [AddViewNoteActivityModule::class])
-    abstract fun bindAddViewNotesActivity(): AddViewNoteActivity
+    @ContributesAndroidInjector(modules = [AddEditNoteActivityModule::class])
+    abstract fun bindAddViewNotesActivity(): AddEditNoteActivity
 }
