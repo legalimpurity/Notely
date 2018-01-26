@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Notely</string>
+
+    <!-- Add View Note Activity -->
+    <string name="add_note_title">Note Title</string>
+    <string name="add_note_gist">Note Gist</string>
+
+
 </resources>

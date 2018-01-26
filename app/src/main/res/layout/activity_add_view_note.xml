@@ -19,5 +19,32 @@
         android:layout_height="match_parent">
 
 
+        <AutoCompleteTextView
+            android:id="@+id/noteTitle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:hint="@string/add_note_title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/lastUpdated"/>
+
+        <TextView
+            android:id="@+id/lastUpdated"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            tools:text="Last updated: Today at 6:30 PM"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noteTitle"
+            app:layout_constraintBottom_toTopOf="@+id/noteGist"
+            />
+
+        <MultiAutoCompleteTextView
+            android:id="@+id/noteGist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/add_note_gist"
+            lay/>
     </android.support.constraint.ConstraintLayout>
 </layout>
