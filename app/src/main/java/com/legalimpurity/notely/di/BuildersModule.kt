@@ -6,6 +6,8 @@ import com.legalimpurity.notely.ui.notesui.NotesActivity
 import com.legalimpurity.notely.ui.notesui.NotesActivityModule
 import com.legalimpurity.notely.ui.splashui.SplashActivity
 import com.legalimpurity.notely.ui.splashui.SplashActivityModule
+import com.legalimpurity.notely.ui.viewnoteui.ViewNoteActivity
+import com.legalimpurity.notely.ui.viewnoteui.ViewNoteModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -21,5 +23,8 @@ abstract class BuildersModule {
     abstract fun bindNotesActivity(): NotesActivity
 
     @ContributesAndroidInjector(modules = [AddEditNoteActivityModule::class])
-    abstract fun bindAddViewNotesActivity(): AddEditNoteActivity
+    abstract fun bindAddEditNotesActivity(): AddEditNoteActivity
+
+    @ContributesAndroidInjector(modules = [ViewNoteModule::class])
+    abstract fun bindViewNotesActivity(): ViewNoteActivity
 }

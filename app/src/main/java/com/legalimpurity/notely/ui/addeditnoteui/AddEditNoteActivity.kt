@@ -23,23 +23,12 @@ import javax.inject.Inject
  */
 
 private val MY_NOTE_ACTIVITY_OBJECT = "MY_NOTE_ACTIVITY_OBJECT"
-fun openAddEditNoteActivity(activity: Activity, myNote: MyNote?, rootView : View?)
+fun openAddEditNoteActivity(activity: Activity, myNote: MyNote?)
 {
     val intent = Intent()
     intent.setClass(activity, AddEditNoteActivity::class.java)
     intent.putExtra(MY_NOTE_ACTIVITY_OBJECT,myNote)
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && rootView != null) {
-        val options: ActivityOptions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ActivityOptions.makeSceneTransitionAnimation(activity,
-                    Pair.create(rootView, activity.getString(R.string.transition_myNote_background))
-            )
-        } else {
-            TODO("VERSION.SDK_INT < LOLLIPOP")
-        }
-        activity.startActivity(intent, options.toBundle())
-    }
-    else
-        activity.startActivity(intent)
+    activity.startActivity(intent)
 }
 
 class AddEditNoteActivity : BaseActivity<ActivityAddViewNoteBinding, AddEditNoteActivityModel>(), AddEditNoteNavigator {
@@ -53,6 +42,7 @@ class AddEditNoteActivity : BaseActivity<ActivityAddViewNoteBinding, AddEditNote
         super.onCreate(savedInstanceState)
         mAddEditNoteActivityModel.setNavigator(this)
         mActivityAddViewNoteBinding = getViewDataBinding()
+        loadObj()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -75,6 +65,16 @@ class AddEditNoteActivity : BaseActivity<ActivityAddViewNoteBinding, AddEditNote
         }
     }
 
+    private fun loadObj()
+    {
+        if (intent.hasExtra(MY_NOTE_ACTIVITY_OBJECT)) {
+            mAddEditNoteActivityModel.noteObj.set(intent.getParcelableExtra(MY_NOTE_ACTIVITY_OBJECT))
+        }
+        else {
+            mAddEditNoteActivityModel.isItNewNote = true
+            mAddEditNoteActivityModel.noteObj.set(MyNote("",""))
+        }
+    }
 
     // Functions to be implemented by every Activity
     override fun getViewModel() = mAddEditNoteActivityModel
@@ -88,7 +88,7 @@ class AddEditNoteActivity : BaseActivity<ActivityAddViewNoteBinding, AddEditNote
     }
 
     override fun checkNoteTitle() {
-        if(!TextUtils.isEmpty(mAddEditNoteActivityModel.noteTitle.get()))
+        if(!TextUtils.isEmpty(mAddEditNoteActivityModel.noteObj.get().getNoteTitle()))
             mAddEditNoteActivityModel.validationDone()
     }
 

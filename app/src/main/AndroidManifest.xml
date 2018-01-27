@@ -18,6 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.addeditnoteui.AddEditNoteActivity" android:parentActivityName=".ui.notesui.NotesActivity"/>
+        <activity android:name=".ui.viewnoteui.ViewNoteActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.notesui.NotesActivity"/>
     </application>
 
 </manifest>

@@ -11,6 +11,7 @@
             type="com.legalimpurity.notely.ui.notesui.notesadapter.NotesAdapterListener"/>
     </data>
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/item_note_root"
         android:layout_width="match_parent"
         android:layout_height="@dimen/mynote_item_height"
         android:layout_marginStart="@dimen/mynote_list_margin"
@@ -81,6 +82,6 @@
             app:layout_constraintEnd_toStartOf="@+id/fav_but"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_text_view"
-            tools:text="Ten little Soldier Boys went out to dine" />
+            tools:text="Ten little Soldier Boys went out to dine"/>
     </android.support.constraint.ConstraintLayout>
 </layout>

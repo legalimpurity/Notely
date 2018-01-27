@@ -12,8 +12,9 @@ import io.reactivex.disposables.CompositeDisposable
  */
 class AddEditNoteActivityModel(dataManager: DataManager, schedulerProvider: SchedulerProvider, compositeDisposable: CompositeDisposable) : BaseViewModel<AddEditNoteNavigator>(dataManager,schedulerProvider, compositeDisposable) {
 
-    val noteTitle = ObservableField<String>()
-    val noteGist = ObservableField<String>()
+    val noteObj = ObservableField<MyNote>()
+
+    var isItNewNote = false
 
     fun validationDone()
     {
@@ -21,16 +22,31 @@ class AddEditNoteActivityModel(dataManager: DataManager, schedulerProvider: Sche
     }
 
     fun addNote() {
-        val myNote = MyNote(noteTitle.get(),noteGist.get())
-        getCompositeDisposable()?.add(getDataManager()
-                .addANewNote(myNote)
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe({
-                    if(it)
-                        getNavigator()?.noteAddedOrUpdated()
-                    else
-                        getNavigator()?.apiError(Throwable(""))
-                }))
+        val myNote = noteObj.get()
+        if(isItNewNote) {
+            getCompositeDisposable()?.add(getDataManager()
+                    .addANewNote(myNote)
+                    .subscribeOn(getSchedulerProvider().io())
+                    .observeOn(getSchedulerProvider().ui())
+                    .subscribe({
+                        if (it)
+                            getNavigator()?.noteAddedOrUpdated()
+                        else
+                            getNavigator()?.apiError(Throwable(""))
+                    }))
+        }
+        else
+        {
+            getCompositeDisposable()?.add(getDataManager()
+                    .updateNote(myNote)
+                    .subscribeOn(getSchedulerProvider().io())
+                    .observeOn(getSchedulerProvider().ui())
+                    .subscribe({
+                        if (it)
+                            getNavigator()?.noteAddedOrUpdated()
+                        else
+                            getNavigator()?.apiError(Throwable(""))
+                    }))
+        }
     }
 }

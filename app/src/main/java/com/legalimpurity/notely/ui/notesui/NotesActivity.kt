@@ -1,5 +1,6 @@
 package com.legalimpurity.notely.ui.notesui
 
+import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.os.Build
 import android.os.Bundle
@@ -22,6 +23,7 @@ import com.legalimpurity.notely.ui.baseui.BaseActivity
 import com.legalimpurity.notely.ui.notesui.draweradapter.DrawerAdapter
 import com.legalimpurity.notely.ui.notesui.notesadapter.NotesAdapter
 import com.legalimpurity.notely.ui.notesui.notesadapter.NotesAdapterListener
+import com.legalimpurity.notely.ui.viewnoteui.openViewNoteActivity
 import javax.inject.Inject
 
 
@@ -52,7 +54,7 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
         mNotesActivityModel.setNavigator(this)
         mActivityNotesBinding = getViewDataBinding()
         setUpDrawer()
-        setUpCoursesAdapter()
+        setUpCoursesAdapter(this)
         subscribeToLiveData()
         setDrawerData()
     }
@@ -66,7 +68,7 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_add -> {
-                openAddEditNoteActivity(this,null,null)
+                openAddEditNoteActivity(this,null)
                 return true
             }
             R.id.action_filter -> {
@@ -152,14 +154,14 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
         })
     }
 
-    private fun setUpCoursesAdapter()
+    private fun setUpCoursesAdapter(activity:Activity)
     {
         mActivityNotesBinding?.notesRecyclerView?.layoutManager = mLayoutManager
         mActivityNotesBinding?.notesRecyclerView?.itemAnimator = mItemAnimator
         mActivityNotesBinding?.notesRecyclerView?.adapter = mNotesAdapter
         mNotesAdapter.setListener(object : NotesAdapterListener{
             override fun onClick(myNote: MyNote, view: View) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                openViewNoteActivity(activity,myNote,view)
             }
 
             override fun onFavd(myNote: MyNote, view: View) {
