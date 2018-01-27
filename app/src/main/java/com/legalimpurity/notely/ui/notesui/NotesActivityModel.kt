@@ -43,6 +43,7 @@ class NotesActivityModel(dataManager: DataManager, schedulerProvider: SchedulerP
 
     fun getNotesLiveData() = notesLiveData
     fun getNotesObservableArrayList() = notesObservableArrayList
+    fun getDrawerObservableArrayList() = drawerObservableArrayList
 
     fun addNotesToList(notes: List<MyNote>) {
         notesObservableArrayList.clear()

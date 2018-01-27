@@ -37,14 +37,30 @@
         </android.support.design.widget.CoordinatorLayout>
 
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/right_drawer"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="@dimen/drawer_width"
             android:layout_height="match_parent"
-            tools:listitem="@layout/item_drawer"
-            app:adapter="@{viewModel.notesObservableArrayList}"
-            android:background="@color/white"
-            android:layout_gravity="end"/>
+            android:layout_gravity="end"
+            android:background="@color/white">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/right_drawer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_drawer"
+                app:adapter="@{viewModel.drawerObservableArrayList}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/navigation_drawer_apply"
+                android:textAllCaps="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </android.support.constraint.ConstraintLayout>
 
     </android.support.v4.widget.DrawerLayout>
 

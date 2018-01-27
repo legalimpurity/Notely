@@ -21,6 +21,7 @@ import com.legalimpurity.notely.ui.baseui.BaseActivity
 import com.legalimpurity.notely.ui.notesui.draweradapter.DrawerAdapter
 import com.legalimpurity.notely.ui.notesui.notesadapter.NotesAdapter
 import com.legalimpurity.notely.ui.notesui.notesadapter.NotesAdapterListener
+import com.legalimpurity.notely.util.AppLogger
 import javax.inject.Inject
 
 
@@ -83,7 +84,8 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
     // Have to set it up here as cant allow context to enter the model.
     private fun setDrawerData()
     {
-        if(mNotesActivityModel.drawerLiveData.value?.size == 0) {
+        AppLogger.d(mNotesActivityModel.drawerLiveData.value?.size.toString())
+        if(mNotesActivityModel.drawerLiveData.value?.size == null) {
             var drawerModel1 = DrawerModel()
             drawerModel1.itemName = getString(R.string.navigation_drawer_hearted)
             drawerModel1.selected = false
@@ -139,16 +141,8 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
 
     private fun subscribeToLiveData()
     {
-        mNotesActivityModel.getNotesLiveData().observe(this, object : Observer<List<MyNote>> {
-            override fun onChanged(myNotes: List<MyNote>?) {
-                myNotes?.let{ mNotesActivityModel.addNotesToList(it) }
-            }
-        })
-        mNotesActivityModel.drawerLiveData.observe(this, object : Observer<List<DrawerModel>> {
-            override fun onChanged(drawerItems: List<DrawerModel>?) {
-                drawerItems?.let{ mNotesActivityModel.addDrawerItemsToList(it) }
-            }
-        })
+        mNotesActivityModel.getNotesLiveData().observe(this, Observer<List<MyNote>> { myNotes -> myNotes?.let{ mNotesActivityModel.addNotesToList(it) } })
+        mNotesActivityModel.drawerLiveData.observe(this, Observer<List<DrawerModel>> { drawerItems -> drawerItems?.let{ mNotesActivityModel.addDrawerItemsToList(it) } })
     }
 
     private fun setUpCoursesAdapter()
