@@ -11,6 +11,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.TranslateAnimation
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.legalimpurity.notely.BR
 import com.legalimpurity.notely.R
@@ -18,7 +19,6 @@ import com.legalimpurity.notely.data.local.models.local.MyNote
 import com.legalimpurity.notely.databinding.ActivityNotesBinding
 import com.legalimpurity.notely.ui.addeditnoteui.openAddEditNoteActivity
 import com.legalimpurity.notely.ui.baseui.BaseActivity
-import com.legalimpurity.notely.ui.notesui.draweradapter.DrawerAdapter
 import com.legalimpurity.notely.ui.notesui.notesadapter.NotesAdapter
 import com.legalimpurity.notely.ui.notesui.notesadapter.NotesAdapterListener
 import javax.inject.Inject
@@ -38,7 +38,7 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
 
     @Inject lateinit var mNotesAdapter: NotesAdapter
 
-    @Inject lateinit var mDrawerAdapter: DrawerAdapter
+//    @Inject lateinit var mDrawerAdapter: DrawerAdapter
 
     private var mActivityNotesBinding: ActivityNotesBinding? = null
 
@@ -92,7 +92,7 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
                     val moveFactor = it * slideOffset
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                        mActivityNotesBinding?.container?.setTranslationX(moveFactor)
+                        mActivityNotesBinding?.container?.setTranslationX(-moveFactor)
                     } else {
                         val anim = TranslateAnimation(lastTranslate, moveFactor, 0.0f, 0.0f)
                         anim.duration = 0
@@ -115,8 +115,13 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
         mActivityNotesBinding?.drawerLayout?.addDrawerListener(toggle)
         toggle.syncState()
 
-        mActivityNotesBinding?.rightDrawer?.adapter =mDrawerAdapter
-
+        mActivityNotesBinding?.rightDrawer?.adapter = ArrayAdapter<String>(this, R.layout.item_drawer, R.id.url, arrayOf("favs","heart"))
+        mActivityNotesBinding?.rightDrawer?.onItemClickListener = AdapterView.OnItemClickListener{
+            l, v, pos, id ->
+//            when(pos){
+//                0 ->
+//            }
+        }
     }
 
     private fun subscribeToLiveData()

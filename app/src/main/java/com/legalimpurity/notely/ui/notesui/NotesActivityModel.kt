@@ -19,6 +19,9 @@ class NotesActivityModel(dataManager: DataManager, schedulerProvider: SchedulerP
 
     var drawerOpen = false
 
+//    val heartedenabled = MutableLiveData<Boolean>()
+//    val favdenabled = MutableLiveData<Boolean>()
+
     private val notesObservableArrayList = ObservableArrayList<MyNote>()
     private val notesLiveData: MutableLiveData<List<MyNote>> = MutableLiveData()
 
