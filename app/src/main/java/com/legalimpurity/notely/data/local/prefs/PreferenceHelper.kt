@@ -5,5 +5,9 @@ package com.legalimpurity.notely.data.local.prefs
  */
 interface PreferenceHelper
 {
+    fun getHeartedFilterStatus(): Boolean
+    fun setHeartedFilterStatus(status: Boolean)
 
+    fun getFavdFilterStatus(): Boolean
+    fun setFavdFilterStatus(status: Boolean)
 }

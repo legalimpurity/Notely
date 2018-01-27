@@ -11,6 +11,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.TranslateAnimation
+import android.widget.Toast
 import com.legalimpurity.notely.BR
 import com.legalimpurity.notely.R
 import com.legalimpurity.notely.data.local.models.local.MyNote
@@ -70,11 +71,14 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
                 return true
             }
             R.id.action_filter -> {
-                if(!mNotesActivityModel.drawerOpen)
-                    mActivityNotesBinding?.drawerLayout?.openDrawer(Gravity.RIGHT,true)
-                else
-                    mActivityNotesBinding?.drawerLayout?.closeDrawer(Gravity.RIGHT,true)
-                mNotesActivityModel.drawerOpen = !mNotesActivityModel.drawerOpen
+                if(!mNotesActivityModel.drawerOpen) {
+                    mActivityNotesBinding?.drawerLayout?.openDrawer(Gravity.RIGHT, true)
+                    mNotesActivityModel.drawerOpen = true
+                }
+                else {
+                    mActivityNotesBinding?.drawerLayout?.closeDrawer(Gravity.RIGHT, true)
+                    mNotesActivityModel.drawerOpen = false
+                }
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
@@ -91,7 +95,7 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
             drawerModel1.selected = false
             var drawerModel2 = DrawerModel()
             drawerModel2.itemName = getString(R.string.navigation_drawer_favourite)
-            drawerModel2.selected = false
+            drawerModel2.selected = true
             mNotesActivityModel.drawerLiveData.value = arrayListOf(drawerModel1, drawerModel2)
         }
     }
@@ -124,7 +128,11 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
             }
 
             override fun onDrawerClosed(drawerView: View) {
-
+                if(mDrawerAdapter.isFilterModified) {
+                    Toast.makeText(applicationContext, R.string.navigation_drawer_info, Toast.LENGTH_LONG).show()
+                    mDrawerAdapter.isFilterModified = false
+                }
+                mNotesActivityModel.drawerOpen  = false
             }
 
             override fun onDrawerOpened(drawerView: View) {

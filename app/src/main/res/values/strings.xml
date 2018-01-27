@@ -17,6 +17,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_apply">Apply</string>
+    <string name="navigation_drawer_info">Changes were not applied cause you did not clicked apply.</string>
 
     <string name="navigation_drawer_hearted">Hearted</string>
     <string name="navigation_drawer_favourite">Favourite</string>

@@ -1,6 +1,5 @@
 package com.legalimpurity.notely.ui.notesui.draweradapter
 
-import android.arch.lifecycle.MutableLiveData
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,8 +12,20 @@ import com.legalimpurity.notely.ui.baseui.BaseRecyclerViewHolder
  */
 class DrawerAdapter: RecyclerView.Adapter<BaseRecyclerViewHolder>()
 {
-    private var drawerItemList: MutableList<DrawerModel> = ArrayList()
     private var listener:DrawerAdapterListener? = null
+    var isFilterModified = false
+
+    init {
+        listener = object: DrawerAdapterListener{
+            override fun onClick(drawerItem: DrawerModel) {
+                isFilterModified = true
+                drawerItem.selected = !drawerItem.selected
+                notifyDataSetChanged()
+            }
+        }
+    }
+
+    private var drawerItemList: MutableList<DrawerModel> = ArrayList()
     override fun onBindViewHolder(holder: BaseRecyclerViewHolder?, position: Int) {
         holder?.onBind(position)
     }
@@ -33,11 +44,6 @@ class DrawerAdapter: RecyclerView.Adapter<BaseRecyclerViewHolder>()
             drawerItemList.addAll(repoList)
             notifyDataSetChanged()
         }
-    }
-
-    fun setListener(mDrawerAdapterListener: DrawerAdapterListener)
-    {
-        this.listener = mDrawerAdapterListener
     }
 
     // ViewHolder Class
