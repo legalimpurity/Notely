@@ -58,7 +58,7 @@ class NotesActivityModel(dataManager: DataManager, schedulerProvider: SchedulerP
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe({ insertSuccessfull ->
-                    getNavigator()?.refreshAdapter()
+                    onApplyClick()
 //                    if(insertSuccessfull)
                 }, { throwable ->
 //                    setIsLoading(false)

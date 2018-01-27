@@ -34,6 +34,12 @@
                 tools:listitem="@layout/item_note"
                 app:adapter="@{viewModel.notesObservableArrayList}"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/no_data"
+                android:gravity="center"
+                android:visibility="@{viewModel.notesObservableArrayList.size == 0 ? View.VISIBLE : View.GONE}"/>
         </android.support.design.widget.CoordinatorLayout>
 
 
