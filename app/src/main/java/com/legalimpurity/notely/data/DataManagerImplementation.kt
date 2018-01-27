@@ -18,7 +18,7 @@ class DataManagerImplementation @Inject constructor(val preferencesHelper: Prefe
 
     override fun setFavdFilterStatus(status: Boolean) = preferencesHelper.setFavdFilterStatus(status)
 
-    override fun getLocalNotes() = databaseHelper.getLocalNotes()
+    override fun getLocalNotes(shouldBeHearted:Boolean, shouldBeFavd:Boolean) = databaseHelper.getLocalNotes(shouldBeHearted,shouldBeFavd)
 
     override fun addANewNote(myNote: MyNote) = databaseHelper.addANewNote(myNote)
     override fun updateNote(myNote: MyNote) = databaseHelper.updateNote(myNote)

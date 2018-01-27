@@ -52,9 +52,9 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
         mNotesActivityModel.setNavigator(this)
         mActivityNotesBinding = getViewDataBinding()
         setUpDrawer()
-        setDrawerData()
         setUpCoursesAdapter()
         subscribeToLiveData()
+        setDrawerData()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -87,9 +87,12 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
     // Have to set it up here as cant allow context to enter the model.
     private fun setDrawerData()
     {
-        val drawerModel1 = DrawerModel(getString(R.string.navigation_drawer_hearted),mNotesActivityModel.getDataManager().getHeartedFilterStatus())
-        val drawerModel2 = DrawerModel(getString(R.string.navigation_drawer_favourite),mNotesActivityModel.getDataManager().getFavdFilterStatus())
+        val bool1 = mNotesActivityModel.getDataManager().getHeartedFilterStatus()
+        val bool2 = mNotesActivityModel.getDataManager().getFavdFilterStatus()
+        val drawerModel1 = DrawerModel(getString(R.string.navigation_drawer_hearted),bool1)
+        val drawerModel2 = DrawerModel(getString(R.string.navigation_drawer_favourite),bool2)
         mNotesActivityModel.drawerLiveData.value = arrayListOf(drawerModel1.copy(), drawerModel2.copy())
+        mNotesActivityModel.fetchNotes(bool1,bool2)
     }
 
     private fun setUpDrawer()

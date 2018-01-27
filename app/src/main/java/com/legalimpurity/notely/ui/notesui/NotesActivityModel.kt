@@ -14,10 +14,6 @@ import io.reactivex.disposables.CompositeDisposable
  */
 class NotesActivityModel(dataManager: DataManager, schedulerProvider: SchedulerProvider, compositeDisposable: CompositeDisposable) : BaseViewModel<NotesActivityNavigator>(dataManager,schedulerProvider, compositeDisposable) {
 
-    init {
-        fetchNotes()
-    }
-
     var drawerOpen = false
 
     private val notesObservableArrayList = ObservableArrayList<MyNote>()
@@ -26,10 +22,10 @@ class NotesActivityModel(dataManager: DataManager, schedulerProvider: SchedulerP
     private val drawerObservableArrayList = ObservableArrayList<DrawerModel>()
     val drawerLiveData: MutableLiveData<List<DrawerModel>> = MutableLiveData()
 
-    private fun fetchNotes() {
+    fun fetchNotes(heartedFilterStatus:Boolean, favdFilterStatus:Boolean) {
         setIsLoading(true)
         getCompositeDisposable()?.add(getDataManager()
-                .getLocalNotes()
+                .getLocalNotes(heartedFilterStatus,favdFilterStatus)
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe({ notesResponse ->
@@ -73,15 +69,11 @@ class NotesActivityModel(dataManager: DataManager, schedulerProvider: SchedulerP
     fun onApplyClick()
     {
         drawerLiveData.value?.let {
-            if(it[0].selected)
-                getDataManager().setHeartedFilterStatus(true)
-            else
-                getDataManager().setHeartedFilterStatus(false)
+            getDataManager().setHeartedFilterStatus(it[0].selected)
+            getDataManager().setFavdFilterStatus(it[1].selected)
+            fetchNotes(it[0].selected,it[1].selected)
+            getNavigator()?.clearFilterChangeStatusAndCloseDrawer()
 
-            if(it[1].selected)
-                getDataManager().setFavdFilterStatus(true)
-            else
-                getDataManager().setFavdFilterStatus(false)
         }
     }
 
