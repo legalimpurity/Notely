@@ -1,16 +1,12 @@
 package com.legalimpurity.notely.ui.addeditnoteui
 
 import android.app.Activity
-import android.app.ActivityOptions
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.NavUtils
 import android.text.TextUtils
-import android.util.Pair
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import com.legalimpurity.notely.BR
 import com.legalimpurity.notely.R
 import com.legalimpurity.notely.data.local.models.local.MyNote
@@ -27,7 +23,8 @@ fun openAddEditNoteActivity(activity: Activity, myNote: MyNote?)
 {
     val intent = Intent()
     intent.setClass(activity, AddEditNoteActivity::class.java)
-    intent.putExtra(MY_NOTE_ACTIVITY_OBJECT,myNote)
+    if(myNote != null)
+        intent.putExtra(MY_NOTE_ACTIVITY_OBJECT,myNote)
     activity.startActivity(intent)
 }
 
@@ -58,7 +55,7 @@ class AddEditNoteActivity : BaseActivity<ActivityAddViewNoteBinding, AddEditNote
                 return true
             }
             R.id.action_undo -> {
-                // TODO add dialog confirming and exit activity
+                NavUtils.navigateUpFromSameTask(this)
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
@@ -88,7 +85,7 @@ class AddEditNoteActivity : BaseActivity<ActivityAddViewNoteBinding, AddEditNote
     }
 
     override fun checkNoteTitle() {
-        if(!TextUtils.isEmpty(mAddEditNoteActivityModel.noteObj.get().getNoteTitle()))
+        if(!TextUtils.isEmpty(mActivityAddViewNoteBinding?.noteTitle?.text))
             mAddEditNoteActivityModel.validationDone()
     }
 
