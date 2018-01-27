@@ -15,7 +15,7 @@
     <!-- Transition Names -->
     <string name="transition_myNote_background" translatable="false">transition_myNote_background</string>
 
-
+    <string name="filter">FILTER</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_apply">Apply</string>

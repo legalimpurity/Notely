@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#f5f5f5</color>
+    <color name="colorPrimaryDark">#f5f5f5</color>
+    <color name="colorAccent">#4fc0a6</color>
 
-    <color name="colorHearted">#FF4081</color>
+    <color name="colorHearted">#fd374f</color>
     <color name="colorNotHearted">@color/light_gray</color>
 
-    <color name="colorFaved">#FF4081</color>
+    <color name="colorFaved">#f8d01c</color>
     <color name="colorNotFaved">@color/light_gray</color>
+    <color name="drawer_background">#4e4e4e</color>
+
+    <color name="drawer_selected">@color/colorAccent</color>
+    <color name="drawer_unselected">@color/gray</color>
+
 
     <color name="white">#ffffff</color>
     <color name="black_effective">#2a2a2a</color>

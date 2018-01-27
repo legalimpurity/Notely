@@ -53,6 +53,7 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
         super.onCreate(savedInstanceState)
         mNotesActivityModel.setNavigator(this)
         mActivityNotesBinding = getViewDataBinding()
+        setSupportActionBar(mActivityNotesBinding?.toolbar)
         setUpDrawer()
         setUpCoursesAdapter(this)
         subscribeToLiveData()

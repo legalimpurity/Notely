@@ -39,6 +39,9 @@ class AddEditNoteActivity : BaseActivity<ActivityAddViewNoteBinding, AddEditNote
         super.onCreate(savedInstanceState)
         mAddEditNoteActivityModel.setNavigator(this)
         mActivityAddViewNoteBinding = getViewDataBinding()
+        setSupportActionBar(mActivityAddViewNoteBinding?.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         loadObj()
     }
 

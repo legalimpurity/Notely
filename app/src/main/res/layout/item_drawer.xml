@@ -13,32 +13,32 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/drawer_item_height"
-        android:background="@color/white"
         android:onClick="@{() -> listener.onClick(draweritem)}">
 
         <TextView
             android:id="@+id/title_text_view"
             android:text="@{draweritem.itemName}"
-            android:maxLines="2"
+            android:maxLines="1"
             style="@style/TextStyle.Heading"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/mynote_title_margin"
+            android:layout_margin="@dimen/drawer_option_margin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:text="Hearted"
-            android:textColor="@{draweritem.selected ? @color/colorAccent : @color/gray}"
+            android:textColor="@{draweritem.selected ? @color/drawer_selected : @color/white}"
             tools:textColor="@color/colorAccent"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_check_black_24dp"
+            android:layout_margin="@dimen/drawer_option_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:tint="@{draweritem.selected ? @color/colorAccent : @color/gray}"
+            android:tint="@{draweritem.selected ? @color/drawer_selected : @color/drawer_unselected}"
             tools:tint="@color/colorAccent"/>
 
     </android.support.constraint.ConstraintLayout>

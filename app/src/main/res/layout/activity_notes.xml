@@ -27,8 +27,16 @@
             android:layout_height="match_parent"
             tools:context="com.legalimpurity.notely.ui.notesui.NotesActivity">
 
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:minHeight="?attr/actionBarSize"
+                android:background="?attr/colorPrimary" />
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/notes_recycler_view"
+                android:layout_marginTop="?attr/actionBarSize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/item_note"
@@ -47,7 +55,29 @@
             android:layout_width="@dimen/drawer_width"
             android:layout_height="match_parent"
             android:layout_gravity="end"
-            android:background="@color/white">
+            android:background="@color/drawer_background">
+            <TextView
+                android:id="@+id/filter_text"
+                android:layout_width="0dp"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="@string/filter"
+                android:textAllCaps="true"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:layout_marginStart="@dimen/drawer_option_margin"/>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="?attr/actionBarSize"
+                android:gravity="center"
+                app:srcCompat="@drawable/ic_close_black_24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginEnd="@dimen/drawer_option_margin"
+                android:tint="@color/white"/>
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/right_drawer"
                 android:layout_width="0dp"
@@ -56,17 +86,22 @@
                 app:adapter="@{viewModel.drawerObservableArrayList}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@+id/filter_text"/>
 
             <Button
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/apply_but_height"
                 android:text="@string/navigation_drawer_apply"
                 android:textAllCaps="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:onClick="@{() -> viewModel.onApplyClick()}"/>
+                android:onClick="@{() -> viewModel.onApplyClick()}"
+                android:layout_margin="@dimen/drawer_option_margin"
+                android:padding="@dimen/spacing_normal"
+                style="@style/Button"
+                android:background="@drawable/add_border"
+                android:textColor="@color/white"/>
         </android.support.constraint.ConstraintLayout>
 
     </android.support.v4.widget.DrawerLayout>
