@@ -11,14 +11,14 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.TranslateAnimation
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import com.legalimpurity.notely.BR
 import com.legalimpurity.notely.R
 import com.legalimpurity.notely.data.local.models.local.MyNote
+import com.legalimpurity.notely.data.local.models.others.DrawerModel
 import com.legalimpurity.notely.databinding.ActivityNotesBinding
 import com.legalimpurity.notely.ui.addeditnoteui.openAddEditNoteActivity
 import com.legalimpurity.notely.ui.baseui.BaseActivity
+import com.legalimpurity.notely.ui.notesui.draweradapter.DrawerAdapter
 import com.legalimpurity.notely.ui.notesui.notesadapter.NotesAdapter
 import com.legalimpurity.notely.ui.notesui.notesadapter.NotesAdapterListener
 import javax.inject.Inject
@@ -33,12 +33,14 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
     lateinit var mNotesActivityModel: NotesActivityModel
 
     @Inject lateinit var mLayoutManager : RecyclerView.LayoutManager
+    @Inject lateinit var mDrawerLayoutManager : RecyclerView.LayoutManager
 
     @Inject lateinit var mItemAnimator : RecyclerView.ItemAnimator
+    @Inject lateinit var mDrawerItemAnimator : RecyclerView.ItemAnimator
 
     @Inject lateinit var mNotesAdapter: NotesAdapter
 
-//    @Inject lateinit var mDrawerAdapter: DrawerAdapter
+    @Inject lateinit var mDrawerAdapter: DrawerAdapter
 
     private var mActivityNotesBinding: ActivityNotesBinding? = null
 
@@ -49,6 +51,7 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
         mNotesActivityModel.setNavigator(this)
         mActivityNotesBinding = getViewDataBinding()
         setUpDrawer()
+        setDrawerData()
         setUpCoursesAdapter()
         subscribeToLiveData()
     }
@@ -74,6 +77,20 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    // Have to set it up here as cant allow context to enter the model.
+    private fun setDrawerData()
+    {
+        if(mNotesActivityModel.drawerLiveData.value?.size == 0) {
+            var drawerModel1 = DrawerModel()
+            drawerModel1.itemName = getString(R.string.navigation_drawer_hearted)
+            drawerModel1.selected = false
+            var drawerModel2 = DrawerModel()
+            drawerModel2.itemName = getString(R.string.navigation_drawer_favourite)
+            drawerModel2.selected = false
+            mNotesActivityModel.drawerLiveData.value = arrayListOf(drawerModel1, drawerModel2)
         }
     }
 
@@ -115,20 +132,21 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
         mActivityNotesBinding?.drawerLayout?.addDrawerListener(toggle)
         toggle.syncState()
 
-        mActivityNotesBinding?.rightDrawer?.adapter = ArrayAdapter<String>(this, R.layout.item_drawer, R.id.url, arrayOf("favs","heart"))
-        mActivityNotesBinding?.rightDrawer?.onItemClickListener = AdapterView.OnItemClickListener{
-            l, v, pos, id ->
-//            when(pos){
-//                0 ->
-//            }
-        }
+        mActivityNotesBinding?.rightDrawer?.adapter = mDrawerAdapter
+        mActivityNotesBinding?.rightDrawer?.layoutManager = mDrawerLayoutManager
+        mActivityNotesBinding?.rightDrawer?.itemAnimator = mDrawerItemAnimator
     }
 
     private fun subscribeToLiveData()
     {
         mNotesActivityModel.getNotesLiveData().observe(this, object : Observer<List<MyNote>> {
-            override fun onChanged(courses: List<MyNote>?) {
-                courses?.let{ mNotesActivityModel.addCoursesToList(it) }
+            override fun onChanged(myNotes: List<MyNote>?) {
+                myNotes?.let{ mNotesActivityModel.addNotesToList(it) }
+            }
+        })
+        mNotesActivityModel.drawerLiveData.observe(this, object : Observer<List<DrawerModel>> {
+            override fun onChanged(drawerItems: List<DrawerModel>?) {
+                drawerItems?.let{ mNotesActivityModel.addDrawerItemsToList(it) }
             }
         })
     }

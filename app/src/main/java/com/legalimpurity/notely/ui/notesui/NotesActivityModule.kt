@@ -4,6 +4,7 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.legalimpurity.notely.data.DataManager
+import com.legalimpurity.notely.ui.notesui.draweradapter.DrawerAdapter
 import com.legalimpurity.notely.ui.notesui.notesadapter.NotesAdapter
 import com.legalimpurity.notely.util.rx.SchedulerProvider
 import dagger.Module
@@ -32,5 +33,8 @@ class NotesActivityModule
 
     @Provides
     fun provideNotesAdapter() = NotesAdapter()
+
+    @Provides
+    fun provideDrawerAdapter() = DrawerAdapter()
 
 }

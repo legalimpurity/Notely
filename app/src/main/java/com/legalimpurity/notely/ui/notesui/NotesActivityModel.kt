@@ -4,6 +4,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.databinding.ObservableArrayList
 import com.legalimpurity.notely.data.DataManager
 import com.legalimpurity.notely.data.local.models.local.MyNote
+import com.legalimpurity.notely.data.local.models.others.DrawerModel
 import com.legalimpurity.notely.ui.baseui.BaseViewModel
 import com.legalimpurity.notely.util.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
@@ -19,11 +20,11 @@ class NotesActivityModel(dataManager: DataManager, schedulerProvider: SchedulerP
 
     var drawerOpen = false
 
-//    val heartedenabled = MutableLiveData<Boolean>()
-//    val favdenabled = MutableLiveData<Boolean>()
-
     private val notesObservableArrayList = ObservableArrayList<MyNote>()
     private val notesLiveData: MutableLiveData<List<MyNote>> = MutableLiveData()
+
+    private val drawerObservableArrayList = ObservableArrayList<DrawerModel>()
+    val drawerLiveData: MutableLiveData<List<DrawerModel>> = MutableLiveData()
 
     private fun fetchNotes() {
         setIsLoading(true)
@@ -43,9 +44,14 @@ class NotesActivityModel(dataManager: DataManager, schedulerProvider: SchedulerP
     fun getNotesLiveData() = notesLiveData
     fun getNotesObservableArrayList() = notesObservableArrayList
 
-    fun addCoursesToList(courses: List<MyNote>) {
+    fun addNotesToList(notes: List<MyNote>) {
         notesObservableArrayList.clear()
-        notesObservableArrayList.addAll(courses)
+        notesObservableArrayList.addAll(notes)
+    }
+
+    fun addDrawerItemsToList(drawerItems: List<DrawerModel>) {
+        drawerObservableArrayList.clear()
+        drawerObservableArrayList.addAll(drawerItems)
     }
 
     fun updateMyNote(myNote: MyNote)
