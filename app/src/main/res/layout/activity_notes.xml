@@ -59,7 +59,8 @@
                 android:textAllCaps="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:onClick="@{() -> viewModel.onApplyClick()}"/>
         </android.support.constraint.ConstraintLayout>
 
     </android.support.v4.widget.DrawerLayout>

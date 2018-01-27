@@ -21,9 +21,7 @@ class AddEditNoteActivityModel(dataManager: DataManager, schedulerProvider: Sche
     }
 
     fun addNote() {
-        val myNote = MyNote()
-        myNote.noteTitle = noteTitle.get()
-        myNote.noteGist = noteGist.get()
+        val myNote = MyNote(noteTitle.get(),noteGist.get())
         getCompositeDisposable()?.add(getDataManager()
                 .addANewNote(myNote)
                 .subscribeOn(getSchedulerProvider().io())

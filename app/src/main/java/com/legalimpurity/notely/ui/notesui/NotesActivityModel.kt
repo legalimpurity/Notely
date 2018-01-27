@@ -70,4 +70,19 @@ class NotesActivityModel(dataManager: DataManager, schedulerProvider: SchedulerP
                 }))
     }
 
+    fun onApplyClick()
+    {
+        drawerLiveData.value?.let {
+            if(it[0].selected)
+                getDataManager().setHeartedFilterStatus(true)
+            else
+                getDataManager().setHeartedFilterStatus(false)
+
+            if(it[1].selected)
+                getDataManager().setFavdFilterStatus(true)
+            else
+                getDataManager().setFavdFilterStatus(false)
+        }
+    }
+
 }

@@ -8,4 +8,5 @@ import com.legalimpurity.notely.ui.baseui.BaseNavigator
 interface NotesActivityNavigator : BaseNavigator
 {
     fun refreshAdapter()
+    fun clearFilterChangeStatusAndCloseDrawer()
 }

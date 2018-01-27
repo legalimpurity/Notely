@@ -10,29 +10,27 @@ import java.util.*
  * Created by rkhanna on 26/1/18.
  */
 @Entity(tableName = "MyNotes")
-class MyNote() : Parcelable {
+data class MyNote(var noteTitle: String, var noteGist: String) : Parcelable {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 
     var lastModifiedTime: Date = Date()
 
-    var noteTitle: String = ""
-    var noteGist: String = ""
     var fav = false
     var hearted = false
 
-    constructor(parcel: Parcel) : this() {
+    constructor(parcel: Parcel) : this(
+            parcel.readString(),
+            parcel.readString()) {
         id = parcel.readInt()
-        noteTitle = parcel.readString()
-        noteGist = parcel.readString()
         fav = parcel.readByte() != 0.toByte()
         hearted = parcel.readByte() != 0.toByte()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(id)
         parcel.writeString(noteTitle)
         parcel.writeString(noteGist)
+        parcel.writeInt(id)
         parcel.writeByte(if (fav) 1 else 0)
         parcel.writeByte(if (hearted) 1 else 0)
     }

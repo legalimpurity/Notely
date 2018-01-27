@@ -22,7 +22,6 @@ import com.legalimpurity.notely.ui.baseui.BaseActivity
 import com.legalimpurity.notely.ui.notesui.draweradapter.DrawerAdapter
 import com.legalimpurity.notely.ui.notesui.notesadapter.NotesAdapter
 import com.legalimpurity.notely.ui.notesui.notesadapter.NotesAdapterListener
-import com.legalimpurity.notely.util.AppLogger
 import javax.inject.Inject
 
 
@@ -88,16 +87,9 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
     // Have to set it up here as cant allow context to enter the model.
     private fun setDrawerData()
     {
-        AppLogger.d(mNotesActivityModel.drawerLiveData.value?.size.toString())
-        if(mNotesActivityModel.drawerLiveData.value?.size == null) {
-            var drawerModel1 = DrawerModel()
-            drawerModel1.itemName = getString(R.string.navigation_drawer_hearted)
-            drawerModel1.selected = false
-            var drawerModel2 = DrawerModel()
-            drawerModel2.itemName = getString(R.string.navigation_drawer_favourite)
-            drawerModel2.selected = true
-            mNotesActivityModel.drawerLiveData.value = arrayListOf(drawerModel1, drawerModel2)
-        }
+        val drawerModel1 = DrawerModel(getString(R.string.navigation_drawer_hearted),mNotesActivityModel.getDataManager().getHeartedFilterStatus())
+        val drawerModel2 = DrawerModel(getString(R.string.navigation_drawer_favourite),mNotesActivityModel.getDataManager().getFavdFilterStatus())
+        mNotesActivityModel.drawerLiveData.value = arrayListOf(drawerModel1.copy(), drawerModel2.copy())
     }
 
     private fun setUpDrawer()
@@ -130,6 +122,7 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
             override fun onDrawerClosed(drawerView: View) {
                 if(mDrawerAdapter.isFilterModified) {
                     Toast.makeText(applicationContext, R.string.navigation_drawer_info, Toast.LENGTH_LONG).show()
+                    setDrawerData()
                     mDrawerAdapter.isFilterModified = false
                 }
                 mNotesActivityModel.drawerOpen  = false
@@ -150,7 +143,10 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
     private fun subscribeToLiveData()
     {
         mNotesActivityModel.getNotesLiveData().observe(this, Observer<List<MyNote>> { myNotes -> myNotes?.let{ mNotesActivityModel.addNotesToList(it) } })
-        mNotesActivityModel.drawerLiveData.observe(this, Observer<List<DrawerModel>> { drawerItems -> drawerItems?.let{ mNotesActivityModel.addDrawerItemsToList(it) } })
+        mNotesActivityModel.drawerLiveData.observe(this, Observer<List<DrawerModel>> { drawerItems -> drawerItems?.let{
+            mNotesActivityModel.addDrawerItemsToList(it)
+            }
+        })
     }
 
     private fun setUpCoursesAdapter()
@@ -189,6 +185,12 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
 
     override fun refreshAdapter() {
         mNotesAdapter.notifyDataSetChanged()
+    }
+
+    override fun clearFilterChangeStatusAndCloseDrawer() {
+        mDrawerAdapter.isFilterModified = false
+        mActivityNotesBinding?.drawerLayout?.closeDrawer(Gravity.RIGHT, true)
+        mNotesActivityModel.drawerOpen = false
     }
 
 }
