@@ -10,11 +10,26 @@ import java.util.*
  * Created by rkhanna on 26/1/18.
  */
 @Entity(tableName = "MyNotes")
-data class MyNote(var noteTitle: String, var noteGist: String) : Parcelable {
+data class MyNote(private var noteTitle: String, private var noteGist: String) : Parcelable {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 
-    var lastModifiedTime: Date = Date()
+    var lastModifiedTime = Date()
+
+    fun setNoteTitle(noteTitle: String)
+    {
+        this.noteTitle = noteTitle
+        lastModifiedTime = Date()
+    }
+
+    fun setNoteGist(noteGist:String)
+    {
+        this.noteGist = noteGist
+        lastModifiedTime = Date()
+    }
+
+    fun getNoteTitle() = noteTitle
+    fun getNoteGist() = noteGist
 
     var fav = false
     var hearted = false
