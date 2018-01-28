@@ -10,13 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".NotelyApp">
-        <activity android:name=".ui.notesui.NotesActivity">
+        <activity android:name=".ui.splashui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.notesui.NotesActivity"/>
         <activity android:name=".ui.addeditnoteui.AddEditNoteActivity" android:parentActivityName=".ui.notesui.NotesActivity"/>
         <activity android:name=".ui.viewnoteui.ViewNoteActivity"
             android:parentActivityName=".ui.notesui.NotesActivity"/>

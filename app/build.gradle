@@ -81,4 +81,8 @@ dependencies {
     // database
     compile "android.arch.persistence.room:rxjava2:$rootProject.roomDatabase"
     kapt "android.arch.persistence.room:compiler:$rootProject.roomDatabase"
+
+    // font
+    implementation "uk.co.chrisjenx:calligraphy:$rootProject.calligraphyVersion"
+
 }

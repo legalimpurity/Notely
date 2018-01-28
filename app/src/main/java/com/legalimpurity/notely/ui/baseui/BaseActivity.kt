@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import dagger.android.AndroidInjection
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 /**
  * Created by rkhanna on 25/1/18.
@@ -34,6 +35,11 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<out BaseNavig
         mViewDataBinding.setVariable(getBindingVariable(), mViewModel)
         mViewDataBinding.executePendingBindings()
     }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+    }
+
 
     private fun performDependencyInjection()
     {

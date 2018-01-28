@@ -1,10 +1,12 @@
 package com.legalimpurity.notely.ui.splashui
 
+import android.content.Intent
 import android.os.Bundle
 import com.legalimpurity.notely.BR
 import com.legalimpurity.notely.R
 import com.legalimpurity.notely.databinding.ActivitySplashBinding
 import com.legalimpurity.notely.ui.baseui.BaseActivity
+import com.legalimpurity.notely.ui.notesui.NotesActivity
 import javax.inject.Inject
 
 /**
@@ -20,6 +22,11 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), S
         super.onCreate(savedInstanceState)
         mSplashViewModel.setNavigator(this)
         mActivitySplashBinding = getViewDataBinding()
+        mActivitySplashBinding?.splashView?.postDelayed({
+            val intent = Intent()
+            intent.setClass(this, NotesActivity::class.java)
+            startActivity(intent)
+        }, 1000)
     }
 
     // Functions to be implemented by every Activity

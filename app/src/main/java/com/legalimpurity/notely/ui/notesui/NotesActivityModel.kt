@@ -67,6 +67,11 @@ class NotesActivityModel(dataManager: DataManager, schedulerProvider: SchedulerP
                 }))
     }
 
+    fun closeDrawer()
+    {
+        getNavigator()?.closeDrawer()
+    }
+
     fun onApplyClick()
     {
         drawerLiveData.value?.let {

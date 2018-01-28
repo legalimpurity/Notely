@@ -3,6 +3,7 @@ package com.legalimpurity.notely.di.modules
 import android.app.Application
 import android.arch.persistence.room.Room
 import android.content.Context
+import com.legalimpurity.notely.R
 import com.legalimpurity.notely.data.DataManager
 import com.legalimpurity.notely.data.DataManagerImplementation
 import com.legalimpurity.notely.data.local.db.AppDatabase
@@ -19,6 +20,7 @@ import com.legalimpurity.notely.util.rx.SchedulerProviderImplementation
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 import javax.inject.Singleton
 
 /**
@@ -64,4 +66,14 @@ class AppModule {
     @DatabaseInfo
     @Provides
     fun provideDatabaseName(): String = DB_NAME
+
+    @Provides
+    @Singleton
+    fun provideCalligraphyDefaultConfig(): CalligraphyConfig {
+        return CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/source-sans-pro/SourceSansPro-Regular.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+    }
+
 }

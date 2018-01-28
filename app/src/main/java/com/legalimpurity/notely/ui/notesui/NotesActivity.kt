@@ -91,8 +91,7 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
                     mNotesActivityModel.drawerOpen = true
                 }
                 else {
-                    mActivityNotesBinding?.drawerLayout?.closeDrawer(Gravity.RIGHT, true)
-                    mNotesActivityModel.drawerOpen = false
+                    closeDrawer()
                 }
                 return true
             }
@@ -224,4 +223,8 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
         mNotesActivityModel.drawerOpen = false
     }
 
+    override fun closeDrawer() {
+        mActivityNotesBinding?.drawerLayout?.closeDrawer(Gravity.RIGHT, true)
+        mNotesActivityModel.drawerOpen = false
+    }
 }

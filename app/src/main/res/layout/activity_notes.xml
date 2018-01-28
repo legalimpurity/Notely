@@ -25,7 +25,8 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context="com.legalimpurity.notely.ui.notesui.NotesActivity">
+            tools:context="com.legalimpurity.notely.ui.notesui.NotesActivity"
+            android:background="@color/white">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -78,7 +79,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginEnd="@dimen/drawer_option_margin"
-                android:tint="@color/white"/>
+                android:tint="@color/white"
+                android:onClick="@{() -> viewModel.closeDrawer()}"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/right_drawer"
