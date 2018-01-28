@@ -67,7 +67,8 @@
                 android:textAllCaps="true"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:layout_marginStart="@dimen/drawer_option_margin"/>
+                android:layout_marginStart="@dimen/drawer_option_margin"
+                style="@style/TextStyle.DrawerTitleFilter"/>
 
             <ImageView
                 android:layout_width="0dp"
