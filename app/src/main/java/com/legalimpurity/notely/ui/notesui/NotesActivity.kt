@@ -35,11 +35,13 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
     @Inject
     lateinit var mNotesActivityModel: NotesActivityModel
 
-    @Inject lateinit var mLayoutManager : RecyclerView.LayoutManager
+    @Inject lateinit var mNoteLayoutManager : RecyclerView.LayoutManager
     @Inject lateinit var mDrawerLayoutManager : RecyclerView.LayoutManager
 
-    @Inject lateinit var mItemAnimator : RecyclerView.ItemAnimator
+    @Inject lateinit var mNoteAnimator : RecyclerView.ItemAnimator
     @Inject lateinit var mDrawerItemAnimator : RecyclerView.ItemAnimator
+
+    @Inject lateinit var mNoteDecorator : RecyclerView.ItemDecoration
 
     @Inject lateinit var mNotesAdapter: NotesAdapter
 
@@ -157,9 +159,10 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
 
     private fun setUpCoursesAdapter(activity:Activity)
     {
-        mActivityNotesBinding?.notesRecyclerView?.layoutManager = mLayoutManager
-        mActivityNotesBinding?.notesRecyclerView?.itemAnimator = mItemAnimator
+        mActivityNotesBinding?.notesRecyclerView?.layoutManager = mNoteLayoutManager
+        mActivityNotesBinding?.notesRecyclerView?.itemAnimator = mNoteAnimator
         mActivityNotesBinding?.notesRecyclerView?.adapter = mNotesAdapter
+        mActivityNotesBinding?.notesRecyclerView?.addItemDecoration(mNoteDecorator)
         mNotesAdapter.setListener(object : NotesAdapterListener{
             override fun onClick(myNote: MyNote, view: View) {
                 openViewNoteActivity(activity,myNote,view)

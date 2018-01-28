@@ -13,10 +13,13 @@
 
     <!-- Notes Activity -->
     <dimen name="drawer_width">180dp</dimen>
+    <dimen name="action_bar_height">80dp</dimen>
 
     <!-- MyNote Item shared with MyNote View Activity -->
-    <dimen name="mynote_item_height">@dimen/normal_item_height</dimen>
+    <dimen name="mynote_item_height">120dp</dimen>
     <dimen name="mynote_list_margin">0dp</dimen>
+    <dimen name="mynote_list_padding_sides">8dp</dimen>
+    <dimen name="mynote_list_padding_top_bottom">16dp</dimen>
     <dimen name="mynote_title_margin">@dimen/spacing_normal</dimen>
     <dimen name="mynote_icons_padding">@dimen/spacing_normal</dimen>
 

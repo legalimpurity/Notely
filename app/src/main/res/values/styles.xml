@@ -31,8 +31,18 @@
     </style>
 
     <style name="TextStyle.Heading" parent="TextStyle">
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textAppearance">@style/TextAppearance.Text.Bold</item>
+    </style>
+
+    <style name="TextStyle.Heading2" parent="TextStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/dark_gray</item>
+    </style>
+
+    <style name="TextStyle.Heading3" parent="TextStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/light_gray</item>
     </style>
 
     <style name="TextStyle.Title" parent="TextStyle">
@@ -41,6 +51,7 @@
 
     <!-- TextAppearance -->
     <style name="TextAppearance.Text.Bold" parent="android:TextAppearance">
+        <item name="android:textStyle">bold</item>
         <!--<item name="fontPath">fonts/source-sans-pro/SourceSansPro-Bold.ttf</item>-->
     </style>
 

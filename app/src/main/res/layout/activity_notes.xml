@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:minHeight="?attr/actionBarSize"
-                android:background="?attr/colorPrimary" />
+                android:background="?attr/colorPrimary"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/notes_recycler_view"
@@ -47,7 +47,8 @@
                 android:layout_height="match_parent"
                 android:text="@string/no_data"
                 android:gravity="center"
-                android:visibility="@{viewModel.notesObservableArrayList.size == 0 ? View.VISIBLE : View.GONE}"/>
+                android:visibility="@{viewModel.notesObservableArrayList.size == 0 ? View.VISIBLE : View.GONE}"
+                tools:visibility="gone"/>
         </android.support.design.widget.CoordinatorLayout>
 
 

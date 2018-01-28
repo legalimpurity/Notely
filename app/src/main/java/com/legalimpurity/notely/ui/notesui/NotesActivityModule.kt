@@ -1,6 +1,7 @@
 package com.legalimpurity.notely.ui.notesui
 
 import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.legalimpurity.notely.data.DataManager
@@ -29,7 +30,10 @@ class NotesActivityModule
     }
 
     @Provides
-    fun provideCoursesItemAnimator(): RecyclerView.ItemAnimator = DefaultItemAnimator()
+    fun provideNotesItemAnimator(): RecyclerView.ItemAnimator = DefaultItemAnimator()
+
+    @Provides
+    fun provideNotesItemDecoration(notesActivity: NotesActivity): RecyclerView.ItemDecoration = DividerItemDecoration(notesActivity, DividerItemDecoration.VERTICAL)
 
     @Provides
     fun provideNotesAdapter() = NotesAdapter()
