@@ -26,6 +26,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), S
             val intent = Intent()
             intent.setClass(this, NotesActivity::class.java)
             startActivity(intent)
+            this.finish()
         }, 1000)
     }
 
