@@ -25,8 +25,11 @@ interface NotesDao {
     fun loadCourseDataForCourseWithid(id: Int?): MyNote
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(courseData: MyNote)
+    fun insert(myNote: MyNote)
 
     @Update()
-    fun update(courseData: MyNote)
+    fun update(myNote: MyNote)
+
+    @Delete
+    fun delete(myNote: MyNote)
 }

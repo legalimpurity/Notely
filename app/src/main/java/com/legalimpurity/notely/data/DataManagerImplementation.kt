@@ -10,6 +10,7 @@ import javax.inject.Inject
  */
 class DataManagerImplementation @Inject constructor(val preferencesHelper: PreferenceHelper, val databaseHelper: DatabaseHelper): DataManager
 {
+
     override fun getHeartedFilterStatus() = preferencesHelper.getHeartedFilterStatus()
 
     override fun setHeartedFilterStatus(status: Boolean) = preferencesHelper.setHeartedFilterStatus(status)
@@ -20,6 +21,7 @@ class DataManagerImplementation @Inject constructor(val preferencesHelper: Prefe
 
     override fun getLocalNotes(shouldBeHearted:Boolean, shouldBeFavd:Boolean) = databaseHelper.getLocalNotes(shouldBeHearted,shouldBeFavd)
 
+    override fun deleteNote(myNote: MyNote) = databaseHelper.deleteNote(myNote)
     override fun addANewNote(myNote: MyNote) = databaseHelper.addANewNote(myNote)
     override fun updateNote(myNote: MyNote) = databaseHelper.updateNote(myNote)
 }

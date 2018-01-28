@@ -9,4 +9,5 @@ interface NotesActivityNavigator : BaseNavigator
 {
     fun refreshAdapter()
     fun clearFilterChangeStatusAndCloseDrawer()
+    fun notifyAdapterToRemove(pos:Int)
 }

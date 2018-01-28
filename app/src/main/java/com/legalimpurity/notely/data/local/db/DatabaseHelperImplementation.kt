@@ -21,6 +21,11 @@ class DatabaseHelperImplementation @Inject constructor(private val mAppDatabase:
         true
     }
 
+    override fun deleteNote(myNote: MyNote) = Observable.fromCallable {
+        mAppDatabase.notesDao().delete(myNote)
+        true
+    }
+
     override fun getLocalNotes(shouldBeHearted:Boolean, shouldBeFavd:Boolean) = Observable.fromCallable<List<MyNote>> {
         if(shouldBeHearted && shouldBeFavd)
             mAppDatabase.notesDao().loadByBothFilters()

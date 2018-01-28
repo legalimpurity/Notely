@@ -57,8 +57,9 @@ class NotesActivityModel(dataManager: DataManager, schedulerProvider: SchedulerP
                 .updateNote(myNote)
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
-                .subscribe({ insertSuccessfull ->
-                    onApplyClick()
+                .subscribe({ updateSuccessfull ->
+                    if(updateSuccessfull)
+                        onApplyClick()
 //                    if(insertSuccessfull)
                 }, { throwable ->
 //                    setIsLoading(false)
@@ -75,6 +76,21 @@ class NotesActivityModel(dataManager: DataManager, schedulerProvider: SchedulerP
             getNavigator()?.clearFilterChangeStatusAndCloseDrawer()
 
         }
+    }
+
+    fun deleteNote(myNote: MyNote, pos:Int)
+    {
+        getCompositeDisposable()?.add(getDataManager()
+                .deleteNote(myNote)
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe({ deleteSuccessfull ->
+                    if(deleteSuccessfull)
+                        getNavigator()?.notifyAdapterToRemove(pos)
+                }, { throwable ->
+                    //                    setIsLoading(false)
+                    getNavigator()?.apiError(throwable)
+                }))
     }
 
 }

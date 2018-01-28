@@ -14,6 +14,7 @@
     <!-- Notes Activity -->
     <dimen name="drawer_width">180dp</dimen>
     <dimen name="action_bar_height">80dp</dimen>
+    <dimen name="delete_width">80dp</dimen>
 
     <!-- MyNote Item shared with MyNote View Activity -->
     <dimen name="mynote_item_height">120dp</dimen>

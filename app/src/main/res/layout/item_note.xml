@@ -10,9 +10,31 @@
             name="listener"
             type="com.legalimpurity.notely.ui.notesui.notesadapter.NotesAdapterListener"/>
     </data>
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/mynote_item_height">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/delete_color"
+            android:gravity="end"
+            android:padding="32dp"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="@dimen/delete_width"
+                android:layout_height="0dp"
+                android:layout_weight="0.7"
+                app:srcCompat="@drawable/ic_delete_white_32dp"
+                android:tint="@color/white"/>
+            <TextView
+                android:layout_width="@dimen/delete_width"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
+                android:text="@string/delete"
+                android:gravity="center"
+                android:textColor="@color/white"/>
+        </LinearLayout>
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/item_note_root"
@@ -30,7 +52,8 @@
             android:paddingEnd="@dimen/mynote_list_padding_sides"
             android:paddingStart="@dimen/mynote_list_padding_sides"
             android:paddingTop="@dimen/mynote_list_padding_top_bottom"
-            android:transitionName="@string/transition_myNote_background">
+            android:transitionName="@string/transition_myNote_background"
+            tools:visibility="gone">
 
 
             <ImageButton
@@ -100,5 +123,5 @@
                 app:layout_constraintTop_toBottomOf="@+id/status_text_view" />
         </android.support.constraint.ConstraintLayout>
 
-    </LinearLayout>
+    </FrameLayout>
 </layout>

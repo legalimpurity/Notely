@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
@@ -23,8 +24,11 @@ import com.legalimpurity.notely.ui.baseui.BaseActivity
 import com.legalimpurity.notely.ui.notesui.draweradapter.DrawerAdapter
 import com.legalimpurity.notely.ui.notesui.notesadapter.NotesAdapter
 import com.legalimpurity.notely.ui.notesui.notesadapter.NotesAdapterListener
+import com.legalimpurity.notely.ui.notesui.swipeToDelete.SwipeToDeleteCallback
 import com.legalimpurity.notely.ui.viewnoteui.openViewNoteActivity
 import javax.inject.Inject
+
+
 
 
 /**
@@ -42,6 +46,8 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
     @Inject lateinit var mDrawerItemAnimator : RecyclerView.ItemAnimator
 
     @Inject lateinit var mNoteDecorator : RecyclerView.ItemDecoration
+//    @Inject lateinit var mCallBack : ItemTouchHelper.SimpleCallback
+    var mCallBack : ItemTouchHelper.SimpleCallback? = null
 
     @Inject lateinit var mNotesAdapter: NotesAdapter
 
@@ -57,7 +63,7 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
         mActivityNotesBinding = getViewDataBinding()
         setSupportActionBar(mActivityNotesBinding?.toolbar)
         setUpDrawer()
-        setUpCoursesAdapter(this)
+        setUpNotesAdapter(this)
         subscribeToLiveData()
         setDrawerData()
     }
@@ -157,13 +163,17 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
         })
     }
 
-    private fun setUpCoursesAdapter(activity:Activity)
+    private fun setUpNotesAdapter(activity:Activity)
     {
         mActivityNotesBinding?.notesRecyclerView?.layoutManager = mNoteLayoutManager
         mActivityNotesBinding?.notesRecyclerView?.itemAnimator = mNoteAnimator
         mActivityNotesBinding?.notesRecyclerView?.adapter = mNotesAdapter
         mActivityNotesBinding?.notesRecyclerView?.addItemDecoration(mNoteDecorator)
         mNotesAdapter.setListener(object : NotesAdapterListener{
+            override fun onSwipped(myNote: MyNote, pos: Int) {
+                mNotesActivityModel.deleteNote(myNote,pos)
+            }
+
             override fun onClick(myNote: MyNote, view: View) {
                 openViewNoteActivity(activity,myNote,view)
             }
@@ -179,6 +189,9 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
             }
 
         })
+        // attaching the touch helper to recycler view
+        mCallBack=SwipeToDeleteCallback(this,mNotesAdapter)
+        ItemTouchHelper(mCallBack).attachToRecyclerView(mActivityNotesBinding?.notesRecyclerView)
     }
 
     // Functions to be implemented by every Activity
@@ -194,6 +207,10 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
 
     override fun refreshAdapter() {
         mNotesAdapter.notifyDataSetChanged()
+    }
+
+    override fun notifyAdapterToRemove(pos: Int) {
+        mNotesAdapter.actualRemove(pos)
     }
 
     override fun clearFilterChangeStatusAndCloseDrawer() {

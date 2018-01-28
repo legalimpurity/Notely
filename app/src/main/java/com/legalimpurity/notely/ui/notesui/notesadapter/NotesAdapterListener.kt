@@ -11,4 +11,5 @@ interface NotesAdapterListener
     fun onClick(myNote: MyNote, view: View)
     fun onFavd(myNote: MyNote, view: View)
     fun onHearted(myNote: MyNote, view: View)
+    fun onSwipped(myNote: MyNote, pos: Int)
 }

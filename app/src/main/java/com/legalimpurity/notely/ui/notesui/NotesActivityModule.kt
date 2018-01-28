@@ -41,4 +41,7 @@ class NotesActivityModule
     @Provides
     fun provideDrawerAdapter() = DrawerAdapter()
 
+//    @Provides
+//    fun provideSwipeToDelete(notesActivity: NotesActivity, notesAdapter: NotesAdapter) : ItemTouchHelper.SimpleCallback  = SwipeToDeleteCallback(notesActivity,notesAdapter)
+
 }

@@ -16,6 +16,7 @@ import dagger.android.ContributesAndroidInjector
  */
 @Module
 abstract class BuildersModule {
+
     @ContributesAndroidInjector(modules = [SplashActivityModule::class])
     abstract fun bindSplashActivity(): SplashActivity
 

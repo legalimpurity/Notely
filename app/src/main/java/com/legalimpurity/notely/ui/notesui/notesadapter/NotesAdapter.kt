@@ -2,7 +2,6 @@ package com.legalimpurity.notely.ui.notesui.notesadapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import com.legalimpurity.notely.data.local.models.local.MyNote
 import com.legalimpurity.notely.databinding.ItemNoteBinding
@@ -22,6 +21,17 @@ class NotesAdapter: RecyclerView.Adapter<BaseRecyclerViewHolder>()
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseRecyclerViewHolder {
         var mItemNoteBinding: ItemNoteBinding = ItemNoteBinding.inflate(LayoutInflater.from(parent?.context),parent,false)
         return CourseViewHolder(mItemNoteBinding)
+    }
+
+    fun actualRemove(pos:Int)
+    {
+        noteList.removeAt(pos)
+        notifyItemRemoved(pos)
+    }
+
+    fun removeAt(pos:Int)
+    {
+        notesAdapterListener?.onSwipped(noteList[pos],pos)
     }
 
     override fun getItemCount(): Int = noteList.size
