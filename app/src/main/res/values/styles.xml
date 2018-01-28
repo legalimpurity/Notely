@@ -57,9 +57,20 @@
 
     <!-- TextAppearance -->
 
+    <style name="TextAppearance.Text.DetailTitle" parent="TextAppearance.Text.Bold">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">32sp</item>
+        <item name="fontPath">fonts/Open_Sans/OpenSans-Bold.ttf</item>
+    </style>
+
+    <style name="TextAppearance.Text.EditText" parent="TextAppearance.Text.Bold">
+        <item name="fontPath">fonts/Open_Sans/OpenSans-Regular.ttf</item>
+    </style>
+
+
     <style name="TextAppearance.Text.Bold" parent="android:TextAppearance">
         <item name="android:textStyle">bold</item>
-        <item name="fontPath">fonts/source-sans-pro/SourceSansPro-Bold.ttf</item>
+        <item name="fontPath">fonts/Open_Sans/OpenSans-Bold.ttf</item>
     </style>
 
     <style name="TextAppearence.App.TextInputLayout" parent="@android:style/TextAppearance">
@@ -67,7 +78,7 @@
     </style>
 
     <style name="TextAppearance.Text.Regular" parent="android:TextAppearance">
-        <item name="fontPath">fonts/source-sans-pro/SourceSansPro-Regular.ttf</item>
+        <item name="fontPath">fonts/Open_Sans/OpenSans-Regular.ttf</item>
     </style>
 
     <!-- Buttons -->

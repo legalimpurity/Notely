@@ -37,7 +37,8 @@
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
                 app:toolbarId="@+id/toolbar"
-                app:maxLines="3">
+                app:maxLines="3"
+                app:collapsedTitleTextAppearance="@style/TextAppearance.Text.DetailTitle">
                 <TextView
                     tools:text="Last updated : Today at 6:30 AM"
                     android:layout_width="wrap_content"

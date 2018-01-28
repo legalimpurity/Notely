@@ -39,4 +39,6 @@
     <dimen name="note_detail_view_margin">@dimen/padding_margin_normal</dimen>
     <dimen name="note_detail_start_margin">@dimen/spacing_large</dimen>
 
+    <dimen name="note_edit_start_margin">@dimen/spacing_large</dimen>
+
 </resources>
