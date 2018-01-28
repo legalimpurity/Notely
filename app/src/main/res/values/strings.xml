@@ -26,6 +26,7 @@
 
     <string name="no_data">No Notes found. Check the filters on the right or add a new note.</string>
     <string name="delete">Delete</string>
+    <string name="last_updated">Last Updated :\ </string>
 
     <string name="navigation_drawer_hearted">Hearted</string>
     <string name="navigation_drawer_favourite">Favourite</string>

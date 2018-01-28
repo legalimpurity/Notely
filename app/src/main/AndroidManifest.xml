@@ -19,8 +19,7 @@
         </activity>
         <activity android:name=".ui.notesui.NotesActivity"/>
         <activity android:name=".ui.addeditnoteui.AddEditNoteActivity" android:parentActivityName=".ui.notesui.NotesActivity"/>
-        <activity android:name=".ui.viewnoteui.ViewNoteActivity"
-            android:parentActivityName=".ui.notesui.NotesActivity"/>
+        <activity android:name=".ui.viewnoteui.ViewNoteActivity" android:parentActivityName=".ui.notesui.NotesActivity"/>
     </application>
 
 </manifest>

@@ -10,7 +10,7 @@ import android.view.MenuItem
 import com.legalimpurity.notely.BR
 import com.legalimpurity.notely.R
 import com.legalimpurity.notely.data.local.models.local.MyNote
-import com.legalimpurity.notely.databinding.ActivityAddViewNoteBinding
+import com.legalimpurity.notely.databinding.ActivityAddEditNoteBinding
 import com.legalimpurity.notely.ui.baseui.BaseActivity
 import javax.inject.Inject
 
@@ -28,18 +28,18 @@ fun openAddEditNoteActivity(activity: Activity, myNote: MyNote?)
     activity.startActivity(intent)
 }
 
-class AddEditNoteActivity : BaseActivity<ActivityAddViewNoteBinding, AddEditNoteActivityModel>(), AddEditNoteNavigator {
+class AddEditNoteActivity : BaseActivity<ActivityAddEditNoteBinding, AddEditNoteActivityModel>(), AddEditNoteNavigator {
 
     @Inject
     lateinit var mAddEditNoteActivityModel: AddEditNoteActivityModel
 
-    private var mActivityAddViewNoteBinding: ActivityAddViewNoteBinding? = null
+    private var mActivityAddEditNoteBinding: ActivityAddEditNoteBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mAddEditNoteActivityModel.setNavigator(this)
-        mActivityAddViewNoteBinding = getViewDataBinding()
-        setSupportActionBar(mActivityAddViewNoteBinding?.toolbar)
+        mActivityAddEditNoteBinding = getViewDataBinding()
+        setSupportActionBar(mActivityAddEditNoteBinding?.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         loadObj()
@@ -81,14 +81,14 @@ class AddEditNoteActivity : BaseActivity<ActivityAddViewNoteBinding, AddEditNote
 
     override fun getBindingVariable() = BR.viewModel
 
-    override fun getLayoutId() = R.layout.activity_add_view_note
+    override fun getLayoutId() = R.layout.activity_add_edit_note
 
     // Navigator Functions
     override fun apiError(throwable: Throwable) {
     }
 
     override fun checkNoteTitle() {
-        if(!TextUtils.isEmpty(mActivityAddViewNoteBinding?.noteTitle?.text))
+        if(!TextUtils.isEmpty(mActivityAddEditNoteBinding?.noteTitle?.text))
             mAddEditNoteActivityModel.validationDone()
     }
 

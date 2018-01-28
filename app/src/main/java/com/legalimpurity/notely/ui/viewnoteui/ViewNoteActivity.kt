@@ -5,10 +5,10 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import android.util.Pair
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.legalimpurity.notely.BR
 import com.legalimpurity.notely.R
 import com.legalimpurity.notely.data.local.models.local.MyNote
@@ -63,12 +63,12 @@ class ViewNoteActivity : BaseActivity<ActivityViewNoteBinding, ViewNoteViewModel
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
             R.id.action_edit -> {
                 openAddEditNoteActivity(this,mMyNote)
-                return true
+                true
             }
-              else -> return super.onOptionsItemSelected(item)
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -78,7 +78,7 @@ class ViewNoteActivity : BaseActivity<ActivityViewNoteBinding, ViewNoteViewModel
             mMyNote = intent.getParcelableExtra(MY_NOTE_ACTIVITY_OBJECT)
             mActivityViewNoteBinding?.myNote = mMyNote
             supportActionBar?.title = mMyNote?.getNoteTitle()
-            supportActionBar?.subtitle = mMyNote?.lastModifiedTime.toString()
+            supportActionBar?.subtitle = mMyNote?.giveFormattedDate()
         }
     }
 

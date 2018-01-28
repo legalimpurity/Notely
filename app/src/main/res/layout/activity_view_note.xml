@@ -27,26 +27,35 @@
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_bar_height"
-            android:fitsSystemWindows="true"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:fitsSystemWindows="true">
 
-            <android.support.design.widget.CollapsingToolbarLayout
+            <net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout
                 android:id="@+id/toolbar_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
                 app:contentScrim="?attr/colorPrimary"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:toolbarId="@+id/toolbar">
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                app:toolbarId="@+id/toolbar"
+                app:maxLines="3">
+                <TextView
+                    tools:text="Last updated : Today at 6:30 AM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    style="@style/TextStyle.Heading2"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="@dimen/note_detail_start_margin"
+                    android:layout_marginBottom="5dp"
+                    android:text="@{@string/last_updated + myNote.giveFormattedDate}"/>
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
-                    app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-            </android.support.design.widget.CollapsingToolbarLayout>
+                    app:layout_collapseMode="pin">
+                </android.support.v7.widget.Toolbar>
+            </net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
 
         <android.support.constraint.ConstraintLayout
@@ -69,15 +78,17 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginRight="@dimen/mynote_title_margin"
+                android:layout_marginTop="@dimen/mynote_title_margin"
+                android:layout_marginBottom="@dimen/mynote_title_margin"
+                android:layout_marginStart="@dimen/note_detail_start_margin">
 
                 <TextView
                     android:id="@+id/status_text_view"
                     style="@style/TextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-                    android:layout_margin="@dimen/mynote_title_margin"
                     android:text="@{myNote.noteGist}"
                     tools:text="@string/large_text" />
 

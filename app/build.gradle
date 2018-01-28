@@ -68,8 +68,8 @@ dependencies {
     implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$project.rxJavaAdapter"
 
     // OKHttp
-    compile "com.squareup.okhttp3:okhttp:$rootProject.okhttp"
-    compile "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp"
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttp"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
@@ -85,4 +85,5 @@ dependencies {
     // font
     implementation "uk.co.chrisjenx:calligraphy:$rootProject.calligraphyVersion"
 
+    implementation "net.opacapp:multiline-collapsingtoolbar:$multilineCollapsingToolbar"
 }
