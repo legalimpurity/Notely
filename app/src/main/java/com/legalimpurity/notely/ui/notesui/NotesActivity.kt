@@ -66,6 +66,11 @@ class NotesActivity : BaseActivity<ActivityNotesBinding, NotesActivityModel>(), 
         setUpNotesAdapter(this)
         subscribeToLiveData()
         setDrawerData()
+
+//        val cal = Calendar.getInstance()
+//        cal.set(Calendar.MONTH,11)
+//        cal.set(Calendar.YEAR,2017)
+//        AppLogger.d(RelativeWeekDayUtil(cal).toString())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -4,6 +4,7 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 import android.os.Parcel
 import android.os.Parcelable
+import com.legalimpurity.notely.util.RelativeWeekDayUtil
 import java.util.*
 
 /**
@@ -64,4 +65,10 @@ data class MyNote(private var noteTitle: String, private var noteGist: String) :
         }
     }
 
+    fun giveFormattedDate() : String
+    {
+        val cal = Calendar.getInstance()
+        cal.time = lastModifiedTime
+        return RelativeWeekDayUtil(cal).toString()
+    }
 }
