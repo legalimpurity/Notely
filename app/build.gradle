@@ -30,7 +30,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
 
     implementation "com.android.support:appcompat-v7:$rootProject.supportLib"
@@ -51,14 +51,14 @@ dependencies {
 
     // Android Lifecycle
     implementation "android.arch.lifecycle:extensions:$rootProject.lifecycle"
-    kapt "android.arch.lifecycle:compiler:$rootProject.lifecycle"
+    kapt "android.arch.lifecycle:common-java8:$rootProject.lifecycle"
 
     // Reactive
     implementation "io.reactivex.rxjava2:rxjava:$project.rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$project.rxAndroidVersion"
 
     //Data Binding
-    kapt "com.android.databinding:compiler:$rootProject.databinding"
+//    kapt "com.android.databinding:compiler:$rootProject.databinding"
 
     // Parser
     implementation "com.google.code.gson:gson:$rootProject.gson"
@@ -79,7 +79,7 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
 
     // database
-    compile "android.arch.persistence.room:rxjava2:$rootProject.roomDatabase"
+    implementation "android.arch.persistence.room:rxjava2:$rootProject.roomDatabase"
     kapt "android.arch.persistence.room:compiler:$rootProject.roomDatabase"
 
     // font

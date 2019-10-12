@@ -25,28 +25,28 @@ class AddEditNoteActivityModel(dataManager: DataManager, schedulerProvider: Sche
         val myNote = noteObj.get()
         if(isItNewNote) {
             getCompositeDisposable()?.add(getDataManager()
-                    .addANewNote(myNote)
+                    .addANewNote(myNote!!)
                     .subscribeOn(getSchedulerProvider().io())
                     .observeOn(getSchedulerProvider().ui())
-                    .subscribe({
+                    .subscribe {
                         if (it)
                             getNavigator()?.noteAddedOrUpdated()
                         else
                             getNavigator()?.apiError(Throwable(""))
-                    }))
+                    })
         }
         else
         {
             getCompositeDisposable()?.add(getDataManager()
-                    .updateNote(myNote)
+                    .updateNote(myNote!!)
                     .subscribeOn(getSchedulerProvider().io())
                     .observeOn(getSchedulerProvider().ui())
-                    .subscribe({
+                    .subscribe {
                         if (it)
                             getNavigator()?.noteAddedOrUpdated()
                         else
                             getNavigator()?.apiError(Throwable(""))
-                    }))
+                    })
         }
     }
 }
